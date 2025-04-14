@@ -1,0 +1,150 @@
+local gui = ...
+
+assert(loadfile("Games/DeathMatch/GUIs/Test_init.cgui"))(gui)
+
+local TestGUI         = gui:GetRootWindow()
+local SomeImage       = TestGUI.SomeImage
+local ButtonToggleHor = TestGUI.ButtonToggleHor
+local ButtonToggleVer = TestGUI.ButtonToggleVer
+local ButtonQuit      = TestGUI.ButtonQuit
+local Counter         = TestGUI.Counter
+local FPS             = TestGUI.FPS
+
+
+function SomeImage:OnFrame()
+    self:GetTransform():set("Rotation", self:GetTime() * 50)
+end
+
+
+
+function ButtonToggleHor:OnMouseButtonDown()
+    local newAlign = TestGUI:GetComponent("Text"):get("horAlign") + 1
+
+    if (newAlign > 1) then newAlign = -1 end
+
+    TestGUI:GetComponent("Text"):set("horAlign", newAlign)
+    self:GetComponent("Text"):set("horAlign", newAlign)
+
+    self:GetTransform():interpolate("Rotation", 0, 360, 250)
+    return true;
+end
+
+
+
+function ButtonToggleVer:OnMouseButtonDown()
+    local newAlign=TestGUI:GetComponent("Text"):get("verAlign") + 1
+
+    if (newAlign > 1) then newAlign = -1 end
+
+    TestGUI:GetComponent("Text"):set("verAlign", newAlign)
+    ButtonQuit:GetComponent("Text"):set("verAlign", newAlign)
+    self:GetComponent("Text"):set("verAlign", newAlign)
+
+    self:GetTransform():interpolate("Pos.y", 380, 300, 500)
+    self:GetTransform():interpolate("Pos.y", 300, 380, 500)
+    return true;
+end
+
+
+
+function ButtonQuit:OnMouseEnter()
+    self:GetComponent("Text"):set("Scale", 0.55)
+    self:GetComponent("Border"):set("Color", 1.0, 0.0, 0.0)
+end
+
+function ButtonQuit:OnMouseLeave()
+    self:GetComponent("Text"):set("Scale", 1.0)
+    self:GetComponent("Border"):set("Color", 1.0, 1.0, 1.0)
+end
+
+function ButtonQuit:OnMouseButtonDown()
+    -- Add a nice shutdown effect.
+    TestGUI:GetTransform():set("Rotation", -10)
+    TestGUI:GetTransform():interpolate("Pos.y", 30, 30, 300)
+    TestGUI:GetTransform():interpolate("Pos.y", 30, 610, 700)
+
+    -- Now somehow quit the game.
+    ci.RunCommand("list();");
+    return true;
+end
+
+
+
+Counter.count=0;
+
+function Counter:OnMouseEnter()
+    self:GetComponent("Text"):interpolate("Scale", 0.6, 0.7, 250)
+    self:GetComponent("Text"):interpolate("Scale", 0.7, 0.6, 250)
+end
+
+function Counter:OnMouseButtonDown()
+    -- As this GUI is a 3D world GUI, it is "operated" from within the HumanPlayerT::Think() code,
+    -- which at this time is implemented such that we get here only on server thinking, but not on
+    -- client prediction or reprediction.
+    self.count = self.count + 1
+    self:GetComponent("Text"):set("Text", "Counter\n" .. self.count)
+
+    -- `gui.Model`  is the Model component that holds this GUI.
+    -- `gui.Entity` is the entity that holds the `gui.Model` that holds this GUI.
+    --
+    -- Thus, if we wanted to call a script function of "our" entity, this would work:
+    --     gui.Entity:GetComponent("Script"):OnActivate()
+    --
+    -- However, for the general case, the `gui.Entity` also has Target components that specify which
+    -- entities should be "activated" (or acted upon) when this GUI is "activated" (e.g. when a button
+    -- has been pressed).
+    -- Therefore, for each target entity specified in `gui.Entity`, the following code calls the
+    -- `OnActivate()` method in the target entity's Script component.
+    -- TODO: This should be generalized and be put into a module, so that other GUIs can use it as well!
+    for i = 0, 99 do
+        local TargetComp = gui.Entity:GetComponent("Target", i)
+
+        -- If there are no more Target components in this entity, we're done.
+        if not TargetComp then break end
+
+        local TargetName = TargetComp:get("Target")
+        local TargetEnt  = world:GetRootEntity():FindByName(TargetName)     -- ... = TargetComp:GetTargetEntity()
+
+        if not TargetEnt then
+            Console.Warning(string.format("%s's target entity %s not found!\n", gui.Entity:GetBasics():get("Name"), TargetName))
+            goto continue
+        end
+
+        local TargetScript = TargetEnt:GetComponent("Script")
+
+        if not TargetScript then
+            Console.Warning(string.format("%s's target entity %s has no Script component!\n", gui.Entity:GetBasics():get("Name"), TargetName))
+            goto continue
+        end
+
+        if not TargetScript.OnActivate then
+            Console.Warning(string.format("%s's target entity %s has no OnActivate() method in its Script component!\n", gui.Entity:GetBasics():get("Name"), TargetName))
+            goto continue
+        end
+
+        -- Console.Print(string.format("Calling `%s:GetComponent(\"Script\"):OnActivate(%s)`\n", TargetName, gui.Entity:GetBasics():get("Name")))
+        TargetScript:OnActivate(gui.Entity)
+
+        ::continue::
+    end
+
+    return true
+end
+
+
+
+FPS.oldTime = FPS:GetTime()
+
+function FPS:OnFrame()
+    local newTime   = FPS:GetTime()
+    local deltaTime = newTime - self.oldTime
+    local TextComp  = self:GetComponent("Text")
+
+    if (deltaTime<0.000000001) then
+        TextComp:set("Text", string.format(" FPS\n INF\n (%.4f sec)", deltaTime))
+    else
+        TextComp:set("Text", string.format(" FPS\n %.2f\n (%.4f sec)", 1/deltaTime, deltaTime))
+    end
+
+    FPS.oldTime=newTime;
+end

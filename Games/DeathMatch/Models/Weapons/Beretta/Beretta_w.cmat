@@ -1,0 +1,13 @@
+Models/Weapons/Beretta/Beretta_w/beretta
+{
+    diffusemap Beretta_w_beretta_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Beretta_w_editor.cmat")

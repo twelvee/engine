@@ -1,0 +1,33 @@
+// Cafu Map File
+// Written by CaWE, the Cafu World Editor.
+Version 14
+
+
+{
+  classname "worldspawn"
+  shlmap_patchsize "8.0"
+  lightmap_patchsize "8.0"
+  wind_velocity "0.0"
+  wind_velocity_var "0.0"
+  precipitation_intensity "3"
+  fog_density "0.0025"
+  fog_start "0.0"
+  fog_end "1.0"
+  fog_color "0 0 0"
+  mru_mat_0 "TechDemo/walls/wall-13b"
+
+  {
+    ( -4 -8.000001 4.0000005 ) ( 4 -8.000001 4.0000005 ) ( 4 -8.000001 -5 ) "Textures/meta/collisionmodel" ( 2 0 -0.0078125 0 ( 64 0 0 ) ( 0 0 -64 ) )
+    ( -4 7.9999995 -5 ) ( 4 7.9999995 -5 ) ( 4 7.9999995 4.0000005 ) "Textures/meta/collisionmodel" ( 2 0 -0.0078125 0 ( 64 0 0 ) ( 0 0 -64 ) )
+    ( -4 -8.000001 4.0000005 ) ( -4 -8.000001 -5 ) ( -4 7.9999995 -5 ) "Textures/meta/collisionmodel" ( 2 0.0078125 0.0078125 0 ( 0 0 64 ) ( 0 64 0 ) )
+    ( 4 7.9999995 4.0000005 ) ( 4 7.9999995 -5 ) ( 4 -8.000001 -5 ) "Textures/meta/collisionmodel" ( 2 0.0078125 0.0078125 0 ( 0 0 64 ) ( 0 64 0 ) )
+    ( 4 -8.000001 4.0000005 ) ( -4 -8.000001 4.0000005 ) ( -4 7.9999995 4.0000005 ) "Textures/meta/collisionmodel" ( 2 0 0.0078125 0 ( 64 0 0 ) ( 0 64 0 ) )
+    ( 4 7.9999995 -5 ) ( -4 7.9999995 -5 ) ( -4 -8.000001 -5 ) "Textures/meta/collisionmodel" ( 2 0 0.0078125 0 ( 64 0 0 ) ( 0 64 0 ) )
+  }
+}
+
+{
+  classname "static_detail_model"
+  rendertranslucency "255"
+  rendercolor "0 0 0"
+}

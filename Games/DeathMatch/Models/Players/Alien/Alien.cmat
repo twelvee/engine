@@ -1,0 +1,13 @@
+Models/Players/Alien/Alien
+{
+    diffusemap Alien_Alien_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Alien_editor.cmat")

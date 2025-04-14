@@ -1,0 +1,13 @@
+Models/LifeForms/FaceHugger/FaceHuggerS1
+{
+    diffusemap FaceHugger_FaceHuggerS1_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("FaceHugger_editor.cmat")

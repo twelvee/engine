@@ -1,0 +1,35 @@
+Models/Weapons/FaceHugger/FaceHugger_v/arm
+{
+    diffusemap ../common_hands_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/FaceHugger/FaceHugger_v/arm1
+{
+    diffusemap ../common_arms_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/FaceHugger/FaceHugger_v/Fasehugger4
+{
+    diffusemap FaceHugger_v_Fasehugger4_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("FaceHugger_v_editor.cmat")

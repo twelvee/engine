@@ -1,0 +1,111 @@
+-- This is a Cafu engine GUI script file, written by CaWE, the Cafu World Editor.
+-- You CAN edit this file manually, but note that CaWE may overwrite your changes.
+-- It is recommended that you place all your customizations like method overrides
+-- and effects into a separate .cgui file that calls dofile() for including this.
+
+
+-- Instantiation of all windows.
+-- *****************************
+
+local gui = ...
+local ElevatorMalfunctionGUI = gui:new("WindowT", "ElevatorMalfunctionGUI")
+ElevatorMalfunctionGUI.Heading = gui:new("WindowT", "Heading")
+ElevatorMalfunctionGUI.TextArea = gui:new("WindowT", "TextArea")
+ElevatorMalfunctionGUI.TextArea2 = gui:new("WindowT", "TextArea2")
+
+
+-- Set the GUIs root window.
+-- *************************
+
+gui:SetRootWindow(ElevatorMalfunctionGUI)
+gui:activate(false)
+gui:setInteractive(false)
+gui:showMouse(false)
+
+
+-- Setup the window hierarchy.
+-- ***************************
+
+ElevatorMalfunctionGUI:AddChild(ElevatorMalfunctionGUI.Heading)
+ElevatorMalfunctionGUI:AddChild(ElevatorMalfunctionGUI.TextArea)
+ElevatorMalfunctionGUI:AddChild(ElevatorMalfunctionGUI.TextArea2)
+
+
+-- Initialization of the window contents ("constructors").
+-- *******************************************************
+
+function ElevatorMalfunctionGUI:OnInit()
+    self:GetTransform():set("Pos", 0, 0)
+    self:GetTransform():set("Size", 640, 480)
+
+    local c1 = gui:new("ComponentImageT")
+    c1:set("Material", "Gui/Background1")
+    c1:set("Color", 1, 0, 0)
+    c1:set("Alpha", 1)
+
+    self:AddComponent(c1)
+end
+
+function ElevatorMalfunctionGUI.Heading:OnInit()
+    self:GetTransform():set("Pos", 43, 45)
+    self:GetTransform():set("Size", 558, 28)
+
+    local c1 = gui:new("ComponentTextT")
+    c1:set("Text", "System Failure #473 at 0xE782CF36")
+    c1:set("Font", "Fonts/Arial")
+    c1:set("Scale", 0.6)
+    c1:set("Padding", 0, 0)
+    c1:set("Color", 1, 0, 0)
+    c1:set("Alpha", 1)
+    c1:set("horAlign", -1)
+    c1:set("verAlign", -1)
+
+    self:AddComponent(c1)
+end
+
+function ElevatorMalfunctionGUI.TextArea:OnInit()
+    self:GetTransform():set("Pos", 43, 91)
+    self:GetTransform():set("Size", 558, 324)
+
+    local c1 = gui:new("ComponentTextT")
+    c1:set("Text", [[
+Service elevator malfunction detected.
+Basement reactor core access
+may be compromised.
+
+
+
+
+Please contact administration immediately.]])
+    c1:set("Font", "Fonts/Arial")
+    c1:set("Scale", 0.55)
+    c1:set("Padding", 0, 0)
+    c1:set("Color", 1, 1, 0)
+    c1:set("Alpha", 1)
+    c1:set("horAlign", -1)
+    c1:set("verAlign", -1)
+
+    self:AddComponent(c1)
+end
+
+function ElevatorMalfunctionGUI.TextArea2:OnInit()
+    self:GetTransform():set("Pos", 43, 91)
+    self:GetTransform():set("Size", 558, 324)
+
+    local c1 = gui:new("ComponentTextT")
+    c1:set("Text", [[
+
+
+
+Beware! Stay clear of elevator shaft!
+Danger of deadly fall!]])
+    c1:set("Font", "Fonts/Arial")
+    c1:set("Scale", 0.55)
+    c1:set("Padding", 0, 0)
+    c1:set("Color", 1, 1, 0)
+    c1:set("Alpha", 1)
+    c1:set("horAlign", -1)
+    c1:set("verAlign", -1)
+
+    self:AddComponent(c1)
+end

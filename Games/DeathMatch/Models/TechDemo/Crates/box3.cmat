@@ -1,0 +1,52 @@
+Models/general_statics/box2/box2
+{
+    diffusemap  box2.png
+    normalmap   box2b_norm.png
+    specularmap box2_spec.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/general_statics/box2/box2b
+{
+    diffusemap  box2b.png
+    normalmap   box2b_norm.png
+    specularmap box_spec.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/general_statics/box2/box2c
+{
+    diffusemap  box2c.png
+    normalmap   box2b_norm.png
+    specularmap box2c_spec.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/general_statics/box2/box2d
+{
+    diffusemap  box2d.png
+    normalmap   box2b_norm.png
+    specularmap box_spec.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+

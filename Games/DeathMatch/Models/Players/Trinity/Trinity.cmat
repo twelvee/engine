@@ -1,0 +1,46 @@
+pants
+{
+    diffusemap Trinity_Pants_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+chrome_glass
+{
+    diffusemap Trinity_ChromeGlass_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+skin
+{
+    diffusemap Trinity_Skin_diff.png, minFilter bilinear, noScaleDown
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+chrome_buckle
+{
+    diffusemap Trinity_ChromeBuckle_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Trinity_editor.cmat")

@@ -1,0 +1,68 @@
+Models/Weapons/Bazooka/Bazooka_v/arm
+{
+    diffusemap ../common_hands_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Bazooka/Bazooka_v/arm1
+{
+    diffusemap ../common_arms_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Bazooka/Bazooka_v/Base
+{
+    diffusemap Bazooka_v_Base_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Bazooka/Bazooka_v/Detail
+{
+    diffusemap Bazooka_v_Detail_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Bazooka/Bazooka_v/rocket
+{
+    diffusemap Bazooka_v_rocket_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Bazooka/Bazooka_v/rocketmotor
+{
+    diffusemap Bazooka_v_rocketmotor_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Bazooka_v_editor.cmat")

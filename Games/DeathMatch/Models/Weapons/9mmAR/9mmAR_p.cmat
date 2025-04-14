@@ -1,0 +1,13 @@
+Models/Weapons/9mmAR/9mmAR_p/m41_lowres
+{
+    diffusemap 9mmAR_w_m41_lowres_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("9mmAR_p_editor.cmat")

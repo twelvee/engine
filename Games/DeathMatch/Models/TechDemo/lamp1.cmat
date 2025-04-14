@@ -1,0 +1,12 @@
+Models/general_statics/lamp1/main
+{
+    diffusemap  lamp1_diff.png
+    lumamap     lamp1_luma.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+

@@ -1,0 +1,14 @@
+Models/Weapons/Glock17/Glock17_p/g17-skin1
+{
+    diffusemap  Glock17_Skin_diff.png
+    specularmap Glock17_Skin_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Glock17_p_editor.cmat")

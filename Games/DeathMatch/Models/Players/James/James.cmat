@@ -1,0 +1,13 @@
+Models/Players/James/low_poly_tex_outline3
+{
+    diffusemap James_low_poly_tex_outline3_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("James_editor.cmat")

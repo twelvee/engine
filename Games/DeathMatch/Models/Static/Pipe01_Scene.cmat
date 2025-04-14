@@ -1,0 +1,13 @@
+Models/Static/Pipe01_Scene/pipesscene
+{
+    diffusemap  Pipe01_Scene_pipesscene_diff.png
+    normalmap   Pipe01_BaseTex_norm.png
+    specularmap Pipe01_Scene_01_spec.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+

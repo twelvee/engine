@@ -1,0 +1,77 @@
+-- This is a Cafu Entities file, written by the CaWE Map Editor.
+-- The file defines the entity hierarchy and properties of the related game world;
+-- it is used both by the CaWE Map Editor as well as by the Cafu Engine.
+--
+-- You CAN edit this file manually, but note that CaWE may overwrite your changes.
+-- Also note that structural changes to the entity hierarchy will bring this file
+-- out of sync with the related map (cmap) and world (cw) files, effectively
+-- causing LOSS OF WORK (see the documentation for details).
+-- It is therefore recommended that you use CaWE for all changes to this file.
+
+
+-- Instantiation of all entities.
+-- ******************************
+
+local vertical_door = world:new("EntityT", "vertical_door")
+vertical_door.upper_half = world:new("EntityT", "upper_half")
+vertical_door.upper_half.move_dest = world:new("EntityT", "move_dest")
+vertical_door.lower_half = world:new("EntityT", "lower_half")
+vertical_door.lower_half.move_dest = world:new("EntityT", "move_dest")
+
+
+-- Set the worlds root entity.
+-- ***************************
+
+world:SetRootEntity(vertical_door)
+
+
+-- Setup the entity hierarchy.
+-- ***************************
+
+vertical_door:AddChild(vertical_door.upper_half)
+vertical_door.upper_half:AddChild(vertical_door.upper_half.move_dest)
+vertical_door:AddChild(vertical_door.lower_half)
+vertical_door.lower_half:AddChild(vertical_door.lower_half.move_dest)
+
+
+-- Initialization of the entity contents ("constructors").
+-- *******************************************************
+
+function vertical_door:OnInit()
+    self:GetTransform():set("Origin", 0, 0, 0)
+    self:GetTransform():set("Orientation", 0, 0, 0)
+
+    local c1 = world:new("ComponentMoverT")
+    c1:set("moveDuration", 3)
+    c1:set("destActivated", 2)
+    c1:set("destTimeout", 3)
+    c1:set("otherEntities", 1)
+    c1:set("trajFunc", 0)
+    c1:set("trajExp", 2)
+
+    local c2 = world:new("ComponentScriptT")
+    c2:set("Name", "Games/DeathMatch/Scripts/MoverBinary.lua")
+    c2:set("ScriptCode", "")
+
+    self:AddComponent(c1, c2)
+end
+
+function vertical_door.upper_half:OnInit()
+    self:GetTransform():set("Origin", 0, -24, 64)
+    self:GetTransform():set("Orientation", 0, 0, 0)
+end
+
+function vertical_door.upper_half.move_dest:OnInit()
+    self:GetTransform():set("Origin", 0, 0, 56)
+    self:GetTransform():set("Orientation", 0, 0, 0)
+end
+
+function vertical_door.lower_half:OnInit()
+    self:GetTransform():set("Origin", 0, 32, 72)
+    self:GetTransform():set("Orientation", 0, 0, 0)
+end
+
+function vertical_door.lower_half.move_dest:OnInit()
+    self:GetTransform():set("Origin", 0, 0, -80)
+    self:GetTransform():set("Orientation", 0, 0, 0)
+end

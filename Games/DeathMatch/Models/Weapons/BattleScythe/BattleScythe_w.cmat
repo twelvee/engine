@@ -1,0 +1,13 @@
+Models/Weapons/BattleScythe/BattleScythe_w/v_wep
+{
+    diffusemap BattleScythe_w_v_wep_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("BattleScythe_w_editor.cmat")

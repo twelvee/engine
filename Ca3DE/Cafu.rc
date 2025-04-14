@@ -1,0 +1,59 @@
+// *****************************************************************************
+// *** Reference documentation about .rc resource files can be found in      ***
+// *** the Microsoft Platform SDK docs.                                      ***
+// *****************************************************************************
+
+// #include "wx/msw/wx.rc"
+
+// We don't use manifests at this time.
+// 1 24 "Cafu-x86.manifest"
+// 1 24 "Cafu-amd64.manifest"
+
+
+// ************************
+// *** Application Icon ***
+// ************************
+
+// This is the icon that is used for the Cafu.exe file.
+aaaa ICON "Cafu-icon.ico"
+
+// This is the icon that is used for the frame and the taskbar when a new GLFW window is opened.
+GLFW_ICON ICON "Cafu-icon.ico"
+
+
+// ***************************
+// *** Version Information ***
+// ***************************
+
+1 VERSIONINFO
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Carsten Fuchs Software"
+            VALUE "FileDescription", "Cafu Engine"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "Cafu"
+            VALUE "LegalCopyright", "© 2018 Carsten Fuchs Software"
+            VALUE "OriginalFilename", "Cafu.exe"
+            VALUE "ProductName", "Cafu Engine"
+            VALUE "ProductVersion", "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

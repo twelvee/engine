@@ -1,0 +1,13 @@
+Models/Players/Punisher/punisher
+{
+    diffusemap Punisher_punisher_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Punisher_editor.cmat")

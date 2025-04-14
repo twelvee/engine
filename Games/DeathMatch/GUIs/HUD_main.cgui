@@ -1,0 +1,152 @@
+local gui = ...
+
+assert(loadfile("Games/DeathMatch/GUIs/HUD_init.cgui"))(gui)
+
+local Background = gui:GetRootWindow()
+local Message    = Background.Message
+local InfoHealth = Background.InGameDials.InfoHealth
+local InfoArmor  = Background.InGameDials.InfoArmor
+local InfoFrags  = Background.InGameDials.InfoFrags
+local InfoAmmo   = Background.InGameDials.InfoAmmo
+local FPS        = Background.InGameDials.FPS
+local CrossHair  = Background.InGameDials.CrossHair
+
+--[[
+This "head-up display" GUI is instantiated by a Human Player component
+which in turn is part of an entity which represents a human player.
+
+The Human Player component binds itself to the script variable `gui.Player`
+and the related entity to the script variable `gui.Entity`.
+The code below demonstrates how these variables can be used to access data
+and functions from the component and its entity.
+--]]
+
+
+Message.OldState = -1
+
+function Message:OnFrame()
+    -- The possible values of State are:
+    --   0 -- alive
+    --   1 -- dead
+    --   2 -- froze spectator
+    --   3 -- free spectator
+    -- (Some alternative to this table would clearly be helpful...)
+    local State = gui.Player:get("State")
+
+    if State == self.OldState then return end
+
+    -- Update the text of the message.
+    if State == 1 then      -- "dead"
+        self:GetComponent("Text"):set("Text", "You're dead.")
+    elseif State == 2 then  -- "frozen spectator"
+        self:GetComponent("Text"):set("Text", "Press FIRE (left mouse button) to respawn!")
+    end
+
+    -- Update the "Show" property for the Message window and the in-game dials.
+    local InGame = State <= 1   -- "alive" or "dead"
+
+    self:GetBasics():set("Show", not InGame)
+    Background.InGameDials:GetBasics():set("Show", InGame)
+
+    self.OldState = State
+end
+
+
+FPS.oldTime = FPS:GetTime()
+
+function FPS:OnFrame()
+    local newTime   = FPS:GetTime()
+    local deltaTime = newTime - self.oldTime
+    local TextComp  = self:GetComponent("Text")
+
+    if (deltaTime < 0.000001) then
+        TextComp:set("Text", "FPS  +inf")
+    else
+        TextComp:set("Text", string.format("FPS  %.2f", 1/deltaTime))
+    end
+
+    FPS.oldTime=newTime;
+end
+
+
+-- The OnFrame() methods are called automatically by the Gui System once per frame.
+function CrossHair:OnFrame()
+    if gui.Player:get("State") ~= 0 then
+        -- Not "alive"? Then show nothing.
+        self:GetBasics():set("Show", false)
+        self:GetComponent("Image"):set("Material", "")
+        return
+    end
+
+    local CarriedWeapon = gui.Player:GetActiveWeapon()
+
+    if not (CarriedWeapon and CarriedWeapon.GetCrosshairInfo) then
+        -- No carried weapon? Then show nothing.
+        self:GetBasics():set("Show", false)
+        self:GetComponent("Image"):set("Material", "")
+        return
+    end
+
+    local MatName, Rotate = CarriedWeapon:GetCrosshairInfo()
+
+    -- The value of MatName is `nil` for "none".
+    self:GetBasics():set("Show", MatName)
+    self:GetComponent("Image"):set("Material", MatName or "")
+
+    if Rotate then
+        self:GetTransform():set("Rotation", self:GetTime() * 50.0)
+    else
+        self:GetTransform():set("Rotation", 0)
+    end
+end
+
+
+function InfoHealth:OnFrame()
+    local Health = gui.Player:get("Health")
+
+    InfoHealth:GetComponent("Text"):set("Text", "Health  " .. Health)
+
+    -- Set the text color of the Health counter linear to its value.
+    if (Health > 100) then Health = 100 end
+    if (Health <   0) then Health =   0 end
+
+    InfoHealth:GetComponent("Text"):set("Color", 1.0, Health/100, Health/100)
+end
+
+
+function InfoArmor:OnFrame()
+    InfoArmor:GetComponent("Text"):set("Text", "Armor  " .. gui.Player:get("Armor"))
+end
+
+
+InfoFrags.NumFrags = 0
+
+function InfoFrags:OnFrame()
+    local Frags = gui.Player:get("Frags")
+
+    InfoFrags:GetComponent("Text"):set("Text", "Frags  " .. Frags)
+
+    -- Trigger a 360 degrees rotation of the Frags counter whenever it changes.
+    if (Frags ~= InfoFrags.NumFrags) then
+        InfoFrags:GetTransform():interpolate("Rotation", 0, 360, 500)
+    end
+
+    InfoFrags.NumFrags = Frags;
+end
+
+
+function InfoAmmo:OnFrame()
+    local CarriedWeapon = gui.Player:GetActiveWeapon()
+    local AmmoString    = ""
+
+    if CarriedWeapon and CarriedWeapon.GetAmmoString then
+        AmmoString = CarriedWeapon:GetAmmoString()
+    end
+
+    if (#AmmoString == 0) then
+        InfoAmmo:GetBasics():set("Show", false)
+    else
+        InfoAmmo:GetBasics():set("Show", true)
+        InfoAmmo:GetComponent("Text"):set("Text", AmmoString)
+    end
+end

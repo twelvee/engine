@@ -1,0 +1,134 @@
+Models/Weapons/Shotgun/Shotgun_v/arm
+{
+    diffusemap Shotgun_v_arm_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/arm1
+{
+    diffusemap Shotgun_v_arm1_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/barrels
+{
+    diffusemap Shotgun_v_barrels_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/body
+{
+    diffusemap Shotgun_v_body_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/ejector
+{
+    diffusemap Shotgun_v_ejector_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/grip
+{
+    diffusemap Shotgun_v_grip_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/misc
+{
+    diffusemap Shotgun_v_misc_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/shell
+{
+    diffusemap Shotgun_v_shell_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/SPAS_grill
+{
+    diffusemap Shotgun_v_SPAS_grill_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/SPAS_slide
+{
+    diffusemap Shotgun_v_SPAS_slide_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/stock
+{
+    diffusemap Shotgun_v_stock_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Shotgun/Shotgun_v/trigger
+{
+    diffusemap Shotgun_v_trigger_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Shotgun_v_editor.cmat")

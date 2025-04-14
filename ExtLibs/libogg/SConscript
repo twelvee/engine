@@ -1,0 +1,13 @@
+import os, sys
+
+Import('env')
+
+
+env_ogg=env.Clone()
+
+if sys.platform.startswith("linux"):
+    # This library will be linked to a .so, thus we have to compile with -fpic.
+    env_ogg.Append(CCFLAGS=["-fpic"])
+
+
+env_ogg.StaticLibrary("ogg", Split("src/bitwise.c src/framing.c"), CPPPATH="include")

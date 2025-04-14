@@ -1,0 +1,12 @@
+Models/Static/barrel1/barrela
+{
+    diffusemap barrel1_a_diff.png
+    normalmap  barrel1_norm.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+

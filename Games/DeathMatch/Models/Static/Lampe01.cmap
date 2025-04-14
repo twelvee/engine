@@ -1,0 +1,46 @@
+// Cafu Map File
+// Written by CaWE, the Cafu World Editor.
+Version 14
+
+
+{
+  classname "worldspawn"
+  shlmap_patchsize "8.0"
+  lightmap_patchsize "8.0"
+  wind_velocity "0.0"
+  wind_velocity_var "0.0"
+  precipitation_intensity "3"
+  fog_density "0.0025"
+  fog_start "0.0"
+  fog_end "1.0"
+  fog_color "0 0 0"
+  mru_mat_0 "TechDemo/walls/wall-13b"
+
+  {
+    ( -1 -1 33 ) ( 1 -1 33 ) ( 1 -1 8 ) "Textures/meta/collisionmodel" ( 2 0 0.320313 0 ( 64 0 0 ) ( 0 0 -64 ) )
+    ( -1 1 8 ) ( 1 1 8 ) ( 1 1 33 ) "Textures/meta/collisionmodel" ( 2 0 0.320313 0 ( 64 0 0 ) ( 0 0 -64 ) )
+    ( -1 -1 33 ) ( -1 -1 8 ) ( -1 1 8 ) "Textures/meta/collisionmodel" ( 2 -0.320313 -0.320313 0 ( 0 0 64 ) ( 0 64 0 ) )
+    ( 1 1 33 ) ( 1 1 8 ) ( 1 -1 8 ) "Textures/meta/collisionmodel" ( 2 -0.320313 -0.320313 0 ( 0 0 64 ) ( 0 64 0 ) )
+    ( 1 -1 33 ) ( -1 -1 33 ) ( -1 1 33 ) "Textures/meta/collisionmodel" ( 2 0 -0.320313 0 ( 64 0 0 ) ( 0 64 0 ) )
+    ( 1 1 8 ) ( -1 1 8 ) ( -1 -1 8 ) "Textures/meta/collisionmodel" ( 2 0 -0.320313 0 ( 64 0 0 ) ( 0 64 0 ) )
+  }
+
+  {
+    ( 0 0 8 ) ( 0 1000 8 ) ( 1000 0 8.000044 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( -4.4137936 -0 4.9655175 ) ( -4.413881 -1000 4.9655175 ) ( -751.8232 6.53406e-005 -659.3983 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( 0 -4.4137936 4.9655175 ) ( 1000 -4.4138374 4.9655175 ) ( -3.26703e-005 -751.8232 -659.3983 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( -3.2941177 -3.2941177 4.9411764 ) ( 703.8126 -710.4009 4.9411764 ) ( -517.78986 -517.78986 -681.05316 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( -0 4.4137936 4.9655175 ) ( -1000 4.4137497 4.9655175 ) ( -3.26703e-005 751.8232 -659.3983 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( -3.2941177 3.2941177 4.9411764 ) ( -710.4009 -703.8126 4.9411764 ) ( -517.78986 517.78986 -681.05316 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( -0 -0 0 ) ( -0 1000 0 ) ( -1000 -0 4.371139e-005 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( 2.9544141 -3.5452971 5.0963645 ) ( 771.17566 636.6391 5.0963645 ) ( 477.49118 -572.9894 -666.1325 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( 4.4137936 0 4.9655175 ) ( 4.4137936 1000 4.9655175 ) ( 751.8232 0 -659.3983 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+    ( 3.2941177 3.2941177 4.9411764 ) ( -703.8126 710.4009 4.9411764 ) ( 517.78986 517.78986 -681.05316 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 16 0 0 ) ( 0 -16 0 ) )
+  }
+}
+
+{
+  classname "static_detail_model"
+  rendertranslucency "255"
+  rendercolor "0 0 0"
+}

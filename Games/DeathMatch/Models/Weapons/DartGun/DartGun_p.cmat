@@ -1,0 +1,13 @@
+Models/Weapons/DartGun/DartGun_p/skin
+{
+    diffusemap DartGun_p_skin_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("DartGun_p_editor.cmat")

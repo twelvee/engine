@@ -1,0 +1,13 @@
+Models/Weapons/Egon/Egon_w/phaser_low_res
+{
+    diffusemap Egon_w_phaser_low_res_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Egon_w_editor.cmat")

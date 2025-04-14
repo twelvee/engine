@@ -1,0 +1,13 @@
+Models/Weapons/FaceHugger/FaceHugger_p/FasehuggerP
+{
+    diffusemap FaceHugger_p_FasehuggerP_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("FaceHugger_p_editor.cmat")

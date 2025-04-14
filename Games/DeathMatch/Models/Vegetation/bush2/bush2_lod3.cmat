@@ -1,0 +1,16 @@
+Models/vegetation/bush2/strauch2
+{
+    diffusemap  bush2_diff.png
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+    alphaTest 0.5
+    noShadows
+    noDynLight
+    twoSided
+
+    meta_editorImage noEditor
+}
+
+
+dofile("bush2_lod3_editor.cmat")

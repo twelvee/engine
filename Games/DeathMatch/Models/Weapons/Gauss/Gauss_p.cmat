@@ -1,0 +1,35 @@
+Models/Weapons/Gauss/Gauss_p/barrelltop
+{
+    diffusemap Gauss_w_barrelltop_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Gauss/Gauss_p/bodyback
+{
+    diffusemap Gauss_w_bodyback_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/Weapons/Gauss/Gauss_p/grip
+{
+    diffusemap Gauss_w_grip_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Gauss_p_editor.cmat")

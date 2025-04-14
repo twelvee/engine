@@ -1,0 +1,41 @@
+// Cafu Map File
+// Written by CaWE, the Cafu World Editor.
+Version 14
+
+
+{
+  classname "worldspawn"
+  shlmap_patchsize "8.0"
+  lightmap_patchsize "8.0"
+  wind_velocity "0.0"
+  wind_velocity_var "0.0"
+  precipitation_intensity "3"
+  fog_density "0.0025"
+  fog_start "0.0"
+  fog_end "1.0"
+  fog_color "0 0 0"
+  mru_mat_0 "TechDemo/walls/wall-13b"
+
+  {
+    ( -7.4999995 13.125 0 ) ( -13.124999 7.5 0 ) ( -14.999999 4.4703484e-007 0 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 -512 0 ) )
+    ( 4.4703484e-007 15 44 ) ( 7.5 13.125 44 ) ( 13.125 7.5 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 -512 0 ) )
+    ( 4.4703484e-007 15 0 ) ( 7.5 13.125 0 ) ( 7.5 13.125 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 0 -512 ) )
+    ( 7.5 13.125 0 ) ( 13.125 7.5 0 ) ( 13.125 7.5 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( 13.125 7.5 0 ) ( 15 4.4703484e-007 0 ) ( 15 4.4703484e-007 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( 15 4.4703484e-007 0 ) ( 13.125 -7.4999995 0 ) ( 13.125 -7.4999995 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( 13.125 -7.4999995 0 ) ( 7.5 -13.124999 0 ) ( 7.5 -13.124999 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( 7.5 -13.124999 0 ) ( 4.4703484e-007 -14.999999 0 ) ( 4.4703484e-007 -14.999999 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 0 -512 ) )
+    ( 4.4703484e-007 -14.999999 0 ) ( -7.4999995 -13.124999 0 ) ( -7.4999995 -13.124999 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 0 -512 ) )
+    ( -7.4999995 -13.124999 0 ) ( -13.124999 -7.4999995 0 ) ( -13.124999 -7.4999995 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( -13.124999 -7.4999995 0 ) ( -14.999999 4.4703484e-007 0 ) ( -14.999999 4.4703484e-007 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( -14.999999 4.4703484e-007 0 ) ( -13.124999 7.5 0 ) ( -13.124999 7.5 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( -13.124999 7.5 0 ) ( -7.4999995 13.125 0 ) ( -7.4999995 13.125 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 0 512 0 ) ( 0 0 -512 ) )
+    ( -7.4999995 13.125 0 ) ( 4.4703484e-007 15 0 ) ( 4.4703484e-007 15 44 ) "Textures/meta/collisionmodel" ( 2 0 0 0 ( 512 0 0 ) ( 0 0 -512 ) )
+  }
+}
+
+{
+  classname "static_detail_model"
+  rendertranslucency "255"
+  rendercolor "0 0 0"
+}

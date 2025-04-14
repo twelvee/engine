@@ -1,0 +1,112 @@
+Models/LifeForms/Butterfly/butterfly
+{
+    diffusemap Butterfly_butterfly_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly1
+{
+    diffusemap Butterfly_butterfly1_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly2
+{
+    diffusemap Butterfly_butterfly2_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly3
+{
+    diffusemap Butterfly_butterfly3_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly4
+{
+    diffusemap Butterfly_butterfly4_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly5
+{
+    diffusemap Butterfly_butterfly5_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly6
+{
+    diffusemap Butterfly_butterfly6_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly7
+{
+    diffusemap Butterfly_butterfly7_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly8
+{
+    diffusemap Butterfly_butterfly8_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/LifeForms/Butterfly/butterfly9
+{
+    diffusemap Butterfly_butterfly9_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Butterfly_editor.cmat")

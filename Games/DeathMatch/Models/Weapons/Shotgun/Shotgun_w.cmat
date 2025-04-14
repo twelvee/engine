@@ -1,0 +1,13 @@
+Models/Weapons/Shotgun/Shotgun_w/spas
+{
+    diffusemap Shotgun_w_spas_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Shotgun_w_editor.cmat")

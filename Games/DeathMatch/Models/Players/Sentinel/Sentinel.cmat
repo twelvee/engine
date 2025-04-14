@@ -1,0 +1,13 @@
+Models/Players/Sentinel/arm
+{
+    diffusemap Sentinel_arm_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+
+dofile("Sentinel_editor.cmat")

@@ -1,0 +1,53 @@
+Models/furniture/regal1/1
+{
+    diffusemap  regal1_diff.tga
+    normalmap   regal1_norm.png
+
+    alphaTest   0.5
+    twoSided
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/furniture/regal1/2
+{
+    diffusemap  regal1_2_diff.tga
+    normalmap   regal1_2_norm.png
+
+    alphaTest   0.5
+    twoSided
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/furniture/regal1/3dirt
+{
+    diffusemap  regal1_3dirt_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
+Models/furniture/regal1/4
+{
+    diffusemap  regal1_3dirt_diff.png
+    normalmap   regal1_4_norm.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+

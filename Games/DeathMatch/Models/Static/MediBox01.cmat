@@ -1,0 +1,13 @@
+"Models/Static/MediBox01/Medibox Final"
+{
+    diffusemap  MediBox01_diff.png
+    normalmap   MediBox01_norm.png
+    specularmap MediBox01_diff.png
+
+    red   ambientLightRed
+    green ambientLightGreen
+    blue  ambientLightBlue
+
+    meta_editorImage noEditor
+}
+
