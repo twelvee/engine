@@ -7,10 +7,16 @@ This project is licensed under the terms of the MIT license.
 #ifndef CAFU_PHYSICS_WORLD_HPP_INCLUDED
 #define CAFU_PHYSICS_WORLD_HPP_INCLUDED
 
+#include "BulletCollision/CollisionDispatch/btCollisionObject.h"
+#include "BulletCollision/CollisionDispatch/btCollisionWorld.h"
+#include "BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+#include "BulletDynamics/ConstraintSolver/btConstraintSolver.h"
+#include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+#include "LinearMath/btQuaternion.h"
+#include "LinearMath/btVector3.h"
 #include "Math3D/BoundingBox.hpp"   // Temporary for PhysicsWorldT::TraceBoundingBox().
 #include "Math3D/Quaternion.hpp"
 #include "Math3D/Vector3.hpp"
-#include "btBulletDynamicsCommon.h"
 
 #undef min    // See http://stackoverflow.com/questions/5004858/stdmin-gives-error
 #undef max

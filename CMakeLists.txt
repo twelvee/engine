@@ -60,9 +60,22 @@ FetchContent_Declare(
         GIT_TAG        1.24.3
 )
 
+
 set(BUILD_EXAMPLES OFF CACHE BOOL "Don't build OpenAL examples" FORCE)
 set(BUILD_TESTING  OFF CACHE BOOL "Don't build OpenAL tests" FORCE)
 set(OPENAL_SOFT_UTILS OFF CACHE BOOL "Don't build OpenAL utilities" FORCE)
+
+FetchContent_Declare(
+        bullet
+        GIT_REPOSITORY https://github.com/bulletphysics/bullet3.git
+        GIT_TAG        3.25
+)
+
+set(BUILD_EXTRAS         OFF CACHE BOOL "Don't build Bullet extras" FORCE)
+set(BUILD_UNIT_TESTS     OFF CACHE BOOL "Don't build Bullet unit tests" FORCE)
+set(BUILD_BULLET2_DEMOS  OFF CACHE BOOL "Don't build Bullet2 demos" FORCE)
+
+FetchContent_MakeAvailable(bullet)
 
 FetchContent_MakeAvailable(wxWidgets)
 FetchContent_MakeAvailable(freetype)
@@ -71,6 +84,10 @@ FetchContent_MakeAvailable(minizip)
 FetchContent_MakeAvailable(ogg)
 FetchContent_MakeAvailable(vorbis)
 FetchContent_MakeAvailable(openal-soft)
+FetchContent_MakeAvailable(bullet)
+
+set(OGG_INCLUDE_DIR "${ogg_SOURCE_DIR}/include" CACHE PATH "Ogg include directory" FORCE)
+set(OGG_LIBRARY "$<TARGET_FILE:ogg>" CACHE FILEPATH "Ogg library file" FORCE)
 
 # platform specific settings
 if(WIN32)
@@ -109,6 +126,9 @@ include_directories(
 
 # Common libraries
 set(COMMON_LIBS
+        BulletDynamics
+        BulletCollision
+        LinearMath
         SceneGraph
         MatSys
         SoundSys
@@ -136,4 +156,5 @@ if(EXISTS "${CMAKE_SOURCE_DIR}/ExtLibs/fbx/lib")
     add_definitions(-DHAVE_FBX_SDK)
 endif()
 
+# todo: remove
 add_compile_definitions(SCONS_BUILD_DIR=build)

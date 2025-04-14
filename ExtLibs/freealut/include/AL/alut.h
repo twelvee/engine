@@ -2,8 +2,7 @@
 #define AL_ALUT_H
 
 #if defined(_MSC_VER)
-#include <openal-soft/include/AL/alc.h>
-#include <openal-soft/include/AL/al.h>
+
 #elif defined(__APPLE__)
 #include <OpenAL/alc.h>
 #include <OpenAL/al.h>

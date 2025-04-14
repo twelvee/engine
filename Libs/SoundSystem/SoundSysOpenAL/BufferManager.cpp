@@ -15,6 +15,8 @@ This project is licensed under the terms of the MIT license.
 #include <iostream>
 #include <stdexcept>
 
+#include "AL/alc.h"
+
 
 static const unsigned long StreamFileSize=50000; ///< Filesize (in bytes) at which GetBuffer uses streams instead of static files.
 

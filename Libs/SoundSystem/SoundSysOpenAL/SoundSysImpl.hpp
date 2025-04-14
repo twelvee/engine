@@ -13,6 +13,8 @@ This project is licensed under the terms of the MIT license.
 #include "Templates/Array.hpp"
 #include <map>
 
+#include "AL/alc.h"
+
 
 class SoundStreamT;
 class BufferManagerT;

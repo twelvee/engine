@@ -10,8 +10,6 @@ This project is licensed under the terms of the MIT license.
 // Include the OpenAL related header files like "alut" does:
 // apparently the subdirectory is not standardized across the platforms yet.
 #if defined(_WIN32)
-#include <openal-soft/include/AL/alc.h>
-#include <openal-soft/include/AL/al.h>
 #elif defined(__APPLE__)
 #include <OpenAL/alc.h>
 #include <OpenAL/al.h>
@@ -22,6 +20,8 @@ This project is licensed under the terms of the MIT license.
 #endif
 
 #include <string>
+
+#include "AL/al.h"
 
 
 /// A helper function to tranlate OpenAL error codes into a string.

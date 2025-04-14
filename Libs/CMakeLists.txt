@@ -7,6 +7,7 @@ add_subdirectory(FileSys)
 add_subdirectory(MaterialSystem)
 add_subdirectory(SoundSystem)
 add_subdirectory(ClipSys)
+add_subdirectory(Math3D)
 
 # find_package(ZLIB REQUIRED)
 

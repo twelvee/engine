@@ -10,7 +10,6 @@ This project is licensed under the terms of the MIT license.
 #include "BufferManager.hpp"
 #include "MixerTrack.hpp"
 #include "../ExtLibs/freealut/include/AL/alut.h"
-#include "openal-soft/include/AL/alc.h"
 #include "../Common/SoundStream.hpp"
 #include "../SoundShader.hpp"
 

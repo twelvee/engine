@@ -9,6 +9,7 @@ This project is licensed under the terms of the MIT license.
 
 #include "OpenALIncl.hpp"
 #include "../Common/SoundStream.hpp"
+#include "AL/alc.h"
 
 
 /// This class represents a stream whose data is obtained from an OpenAL capture device.
