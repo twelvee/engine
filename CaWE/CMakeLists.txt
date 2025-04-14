@@ -20,8 +20,7 @@ add_executable(CaWE
         $<TARGET_OBJECTS:CommonObjects>
 )
 
-# Предполагаем, что wxWidgets >= 3.3 создаёт CMake-псевдонимы wx::base, wx::core, wx::aui, wx::gl, wx::propgrid
-# (если какой-то из них не собран, уберите из списка)
+
 target_link_libraries(CaWE
         PRIVATE
         ${COMMON_LIBS}
@@ -57,9 +56,9 @@ endif()
 
 # Пример пользовательской команды
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    add_custom_command(
+    #[[add_custom_command(
             TARGET CaWE POST_BUILD
             COMMAND CaWE --update-doxygen
             COMMENT "Updating documentation templates"
-    )
+    )]]
 endif()

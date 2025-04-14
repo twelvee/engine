@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 project(Cafu)
 
+add_definitions(-DSCONS_BUILD_DIR=\"${CMAKE_BINARY_DIR}\")
+
 include(FetchContent)
 
 FetchContent_Declare(
@@ -140,6 +142,7 @@ set(COMMON_LIBS
         Models
         Plants
         cfsLib
+        noise
         ogg
         ${PLATFORM_LIBS}
 )
