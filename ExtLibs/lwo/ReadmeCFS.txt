@@ -11,3 +11,6 @@ In lwo2.c and lwob.c I inserted
     #pragma warning(disable:4018)
 #endif
 for warning-free compilation though.
+
+
+Twelvee todo: do we actually need this library? Or I should just get rid of it. Looks rotted.

@@ -10,7 +10,7 @@ This project is licensed under the terms of the MIT license.
 
 extern "C"
 {
-    #include "lwo2.h"
+    #include "lwo/lwo2.h"
 }
 
 #include <cassert>

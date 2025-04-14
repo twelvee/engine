@@ -5,6 +5,9 @@ This project is licensed under the terms of the MIT license.
 */
 
 #include "Client.hpp"
+
+#include <lauxlib.h>
+
 #include "ClientStateConnecting.hpp"
 #include "ClientStateIdle.hpp"
 #include "ClientStateInGame.hpp"
@@ -178,7 +181,7 @@ int ClientT::ConFunc_connect_Callback(lua_State* LuaState)
         case IDLE:
         {
             const char* ServerName=luaL_checkstring(LuaState, 1);
-            const int   ServerPort=luaL_checkint(LuaState, 2);
+            const int   ServerPort=static_cast<int>(luaL_checkinteger(LuaState, 2));
 
             try
             {

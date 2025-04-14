@@ -75,8 +75,6 @@ set(BUILD_EXTRAS         OFF CACHE BOOL "Don't build Bullet extras" FORCE)
 set(BUILD_UNIT_TESTS     OFF CACHE BOOL "Don't build Bullet unit tests" FORCE)
 set(BUILD_BULLET2_DEMOS  OFF CACHE BOOL "Don't build Bullet2 demos" FORCE)
 
-FetchContent_MakeAvailable(bullet)
-
 FetchContent_MakeAvailable(wxWidgets)
 FetchContent_MakeAvailable(freetype)
 FetchContent_MakeAvailable(glfw)
@@ -114,11 +112,10 @@ endif()
 # General include dirs
 include_directories(
         ${CMAKE_SOURCE_DIR}/ExtLibs
-        ${CMAKE_SOURCE_DIR}/ExtLibs/lua/src
-        ${CMAKE_SOURCE_DIR}/ExtLibs/bullet/src
-        ${CMAKE_SOURCE_DIR}/ExtLibs/glfw/include
         ${CMAKE_SOURCE_DIR}/ExtLibs/tclap/include
         ${CMAKE_SOURCE_DIR}/ExtLibs/stbi
+        ${CMAKE_SOURCE_DIR}/ExtLibs/lwo
+        ${CMAKE_SOURCE_DIR}/ExtLibs/lua
         ${CMAKE_SOURCE_DIR}/Libs
         ${ogg_SOURCE_DIR}/include
         ${openal-soft_SOURCE_DIR}/include
@@ -129,13 +126,19 @@ set(COMMON_LIBS
         BulletDynamics
         BulletCollision
         LinearMath
+        TextParser
+        Math3D
+        Terrain
+        Bitmap
         SceneGraph
         MatSys
         SoundSys
         ClipSys
+        Models
         cfsLib
         minizip
         ogg
+        lua
         ${PLATFORM_LIBS}
 )
 

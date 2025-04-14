@@ -10,8 +10,6 @@ This project is licensed under the terms of the MIT license.
 #include <cassert>
 #include <cstring>
 #include <string>
-#include <math.h>
-
 
 using namespace HL2mdl;
 
@@ -117,9 +115,10 @@ namespace
 
         sTemp = sTemp / sY;
 
-        R = (uint16_t)ClampFP16(pow((sY + 1.403f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
-        G = (uint16_t)ClampFP16(pow((sY - 0.344f * sU - 0.714f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
-        B = (uint16_t)ClampFP16(pow((sY + 1.770f * sU) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f);
+        R = static_cast<uint16_t>(ClampFP16(powf((sY + 1.403f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f));
+        G = static_cast<uint16_t>(ClampFP16(powf((sY - 0.344f * sU - 0.714f * sV) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f));
+        B = static_cast<uint16_t>(ClampFP16(powf((sY + 1.770f * sU) * sTemp + sFP16HDRShift, sFP16HDRGamma) * 65535.0f));
+
     }
 
 
@@ -776,10 +775,10 @@ namespace
 
                 const float sLuminance = (float)p[0] * 0.299f + (float)p[1] * 0.587f + (float)p[2] * 0.114f;
 
-                sHDRLogAverageLuminance += log(0.0000000001f + sLuminance);
+                sHDRLogAverageLuminance += logf(0.0000000001f + sLuminance);
             }
 
-            sHDRLogAverageLuminance = exp(sHDRLogAverageLuminance / (float)(uiWidth * uiHeight));
+            sHDRLogAverageLuminance = expf(sHDRLogAverageLuminance / (float)(uiWidth * uiHeight));
         }
 
         uint8_t* lpSourceEnd = lpSource + (uiWidth * uiHeight * SourceInfo.BytesPerPixel);

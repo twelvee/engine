@@ -16,9 +16,6 @@ Each of these libraries is compatible both with the GPL as well as with the cust
       copyright (c) 2003-2006 Erwin Coumans,
       http://continuousphysics.com/Bullet
 
-      NVidia "Cg - C for graphics",
-      http://developer.nvidia.com/object/cg_toolkit.html
-
       FMOD, copyright (c) 1994-2004 Firelight Technologies Pty, Ltd.,
       http://www.fmod.org
 
@@ -26,9 +23,6 @@ Each of these libraries is compatible both with the GPL as well as with the cust
 
       FreeType Library, copyright (c) 2009 The FreeType Project,
       http://www.freetype.org
-
-      libjpeg, copyright (c) 1991-1998 Independent JPEG Group,
-      http://www.ijg.org
 
       libnoise, copyright (c) 2003-2007 Jason Bevins,
       http://libnoise.sourceforge.net
@@ -45,9 +39,6 @@ Each of these libraries is compatible both with the GPL as well as with the cust
       http://www.lua.org
 
       mpg123, copyright (c) Michael Hipp, http://www.mpg123.de
-
-      OpenAL (for Windows),
-      http://connect.creativelabs.com/openal/default.aspx
 
       openal-soft (for Linux),
       http://kcat.strangesoft.net/openal.html

@@ -5,6 +5,7 @@ This project is licensed under the terms of the MIT license.
 */
 
 #include "Loader_cmdl.hpp"
+
 #include "ConsoleCommands/Console.hpp"      // for cf::va()
 #include "MaterialSystem/Material.hpp"
 
@@ -14,7 +15,9 @@ extern "C"
     #include <lualib.h>
     #include <lauxlib.h>
 }
-
+#ifndef LUA_BITLIBNAME
+#define LUA_BITLIBNAME "bit"
+#endif
 
 LoaderCafuT::LoaderCafuT(const std::string& FileName, int Flags)
     : ModelLoaderT(FileName, Flags),
@@ -30,7 +33,7 @@ LoaderCafuT::LoaderCafuT(const std::string& FileName, int Flags)
     luaL_requiref(m_LuaState, LUA_IOLIBNAME,   luaopen_io,        1); lua_pop(m_LuaState, 1);
     luaL_requiref(m_LuaState, LUA_OSLIBNAME,   luaopen_os,        1); lua_pop(m_LuaState, 1);
     luaL_requiref(m_LuaState, LUA_STRLIBNAME,  luaopen_string,    1); lua_pop(m_LuaState, 1);
-    luaL_requiref(m_LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(m_LuaState, 1);
+    //luaL_requiref(m_LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(m_LuaState, 1); // todo: check if needed, deprecated.
     luaL_requiref(m_LuaState, LUA_MATHLIBNAME, luaopen_math,      1); lua_pop(m_LuaState, 1);
 
     // Set  REGISTRY["LoaderCafuT"]=this  so that our custom functions can obtain the pointer to this LoaderCafuT instance.
@@ -121,7 +124,7 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                 lua_pop(m_LuaState, 1);
 
                 lua_getfield(m_LuaState, -1, "parent");
-                Joint.Parent=lua_tointeger(m_LuaState, -1);
+                Joint.Parent=static_cast<int>(lua_tointeger(m_LuaState, -1));
                 lua_pop(m_LuaState, 1);
 
                 lua_getfield(m_LuaState, -1, "pos");
@@ -201,11 +204,11 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                         lua_rawgeti(m_LuaState, -1, WeightNr+1);
                         {
                             lua_getfield(m_LuaState, -1, "joint");
-                            Weight.JointIdx=lua_tointeger(m_LuaState, -1);
+                            Weight.JointIdx=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "weight");
-                            Weight.Weight=float(lua_tonumber(m_LuaState, -1));
+                            Weight.Weight=static_cast<float>(lua_tonumber(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "pos");
@@ -228,11 +231,11 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                         lua_rawgeti(m_LuaState, -1, VertexNr+1);
                         {
                             lua_getfield(m_LuaState, -1, "firstWeight");
-                            Vertex.FirstWeightIdx=lua_tointeger(m_LuaState, -1);
+                            Vertex.FirstWeightIdx=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "numWeights");
-                            Vertex.NumWeights=lua_tointeger(m_LuaState, -1);
+                            Vertex.NumWeights=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "uv");
@@ -259,7 +262,7 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                             for (unsigned int c=0; c<3; c++)
                             {
                                 lua_rawgeti(m_LuaState, -1, c+1);
-                                Triangle.VertexIdx[c]=lua_tointeger(m_LuaState, -1);
+                                Triangle.VertexIdx[c]=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                                 lua_pop(m_LuaState, 1);
                             }
 
@@ -306,7 +309,7 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                 lua_pop(m_LuaState, 1);
 
                 lua_getfield(m_LuaState, -1, "next");
-                Anim.Next=lua_tointeger(m_LuaState, -1);
+                Anim.Next=static_cast<int>(lua_tointeger(m_LuaState, -1));
                 lua_pop(m_LuaState, 1);
 
                 lua_getfield(m_LuaState, -1, "AnimJoints");
@@ -332,11 +335,11 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::JointT>& Joints, ArrayT<CafuModelT::Me
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "flags");
-                            AnimJoint.Flags=lua_tointeger(m_LuaState, -1);
+                            AnimJoint.Flags=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
 
                             lua_getfield(m_LuaState, -1, "firstData");
-                            AnimJoint.FirstDataIdx=lua_tointeger(m_LuaState, -1);
+                            AnimJoint.FirstDataIdx=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                             lua_pop(m_LuaState, 1);
                         }
                         lua_pop(m_LuaState, 1);
@@ -466,8 +469,8 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::GuiFixtureT>& GuiFixtures)
                 for (unsigned int c=0; c<6; c++)
                 {
                     lua_rawgeti(m_LuaState, -1, c+1);
-                    if ((c % 2)==0) GuiFixture.Points[c/2].MeshNr  =lua_tointeger(m_LuaState, -1);
-                               else GuiFixture.Points[c/2].VertexNr=lua_tointeger(m_LuaState, -1);
+                    if ((c % 2)==0) GuiFixture.Points[c/2].MeshNr  =static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
+                               else GuiFixture.Points[c/2].VertexNr=static_cast<unsigned int>(lua_tointeger(m_LuaState, -1));
                     lua_pop(m_LuaState, 1);
                 }
                 lua_pop(m_LuaState, 1);
@@ -525,7 +528,7 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::ChannelT>& Channels)
                     for (unsigned int c=0; c<NumJoints; c++)
                     {
                         lua_rawgeti(m_LuaState, -1, c+1);
-                        Channel.SetMember(lua_tointeger(m_LuaState, -1));
+                        Channel.SetMember(static_cast<unsigned int>(lua_tointeger(m_LuaState, -1)));
                         lua_pop(m_LuaState, 1);
                     }
                 }
@@ -549,7 +552,7 @@ void LoaderCafuT::Load(ArrayT<CafuModelT::ChannelT>& Channels)
     // Remove the light userdata from the stack again, restoring the stack to its original state.
     lua_pop(LuaState, 1);
 
-    const unsigned int v=luaL_checkint(LuaState, 1);
+    unsigned int v=static_cast<unsigned int>(luaL_checkinteger(LuaState, 1));
     if (Loader->m_Version!=0 && Loader->m_Version!=v) luaL_error(LuaState, "Attempt to redefine the version number of the file format.");
 
     Loader->m_Version=v;

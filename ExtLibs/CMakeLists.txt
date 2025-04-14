@@ -8,14 +8,14 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/fmod/CMakeLists.txt")
     add_subdirectory(fmod)
 endif()
 
-# --- lua ---
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/lua/CMakeLists.txt")
-    add_subdirectory(lua)
-endif()
-
 # --- lwo ---
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/lwo/CMakeLists.txt")
     add_subdirectory(lwo)
+endif()
+
+# --- lua ---
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/lua/CMakeLists.txt")
+    add_subdirectory(lua)
 endif()
 
 # --- noise ---

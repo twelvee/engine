@@ -9,7 +9,7 @@
     Licensed under the MIT license.
 */
 
-#include "stb_image.h"  // Реализация должна быть определена в отдельном файле: см. ниже.
+#include "stb_image.h"
 #include "FileSys/File.hpp"
 
 #include <stdint.h>

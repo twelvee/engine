@@ -8,6 +8,10 @@ add_subdirectory(MaterialSystem)
 add_subdirectory(SoundSystem)
 add_subdirectory(ClipSys)
 add_subdirectory(Math3D)
+add_subdirectory(TextParser)
+add_subdirectory(Terrain)
+add_subdirectory(Bitmap)
+add_subdirectory(Models)
 
 # find_package(ZLIB REQUIRED)
 
