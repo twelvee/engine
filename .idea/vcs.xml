@@ -4,44 +4,7 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/3rdparty/nanosvg" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/3rdparty/pcre" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/freetype-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/freetype-src/subprojects/dlg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/glfw-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/jpeg-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/minizip-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/minizip-src/third_party/bzip2" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/minizip-src/third_party/liblzma" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/minizip-src/third_party/zlib" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/minizip-src/third_party/zstd" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/ogg-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/openal-soft-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/stb-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/vorbis-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/3rdparty/catch" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/3rdparty/nanosvg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/3rdparty/pcre" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/src/expat" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/src/jpeg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/src/png" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/src/tiff" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-debug/_deps/wxwidgets-src/src/zlib" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/freetype-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/freetype-src/subprojects/dlg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/glfw-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/jpeg-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/minizip-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/ogg-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/stb-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/vorbis-src" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/3rdparty/catch" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/3rdparty/nanosvg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/3rdparty/pcre" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/src/expat" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/src/jpeg" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/src/png" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/src/tiff" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/cmake-build-release/_deps/wxwidgets-src/src/zlib" vcs="Git" />
   </component>
 </project>

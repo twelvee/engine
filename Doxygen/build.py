@@ -61,7 +61,7 @@ def BuildDoxygenDocs(SourceDir):
     #   - don't contain any lines that the related files in ../src don't have.
     for root, dirs, files in os.walk(SourceDir + "/Doxygen/scripting/tmpl"):
         for filename in files:
-            if filename == "README.txt":
+            if filename == "README.md":
                 continue
 
             with open(root + "/" + filename, 'r') as tmplFile:
