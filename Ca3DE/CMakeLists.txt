@@ -14,7 +14,7 @@ target_link_libraries(Cafu ${COMMON_LIBS})
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     target_compile_definitions(Cafu PRIVATE DEBUG=1)
 else()
-    target_compile_definitions(Cafu PRIVATE DEBUG=1=0)
+    target_compile_definitions(Cafu PRIVATE DEBUG=0)
 endif()
 
 if(UNIX AND NOT APPLE)

@@ -92,3 +92,8 @@ add_library(cfsLib STATIC
 
 target_include_directories(cfsLib PRIVATE ${minizip_SOURCE_DIR}/include "${bullet_SOURCE_DIR}/src")
 target_link_libraries(cfsLib PRIVATE minizip glfw)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(cfsLib PRIVATE DEBUG=1)
+else()
+    target_compile_definitions(cfsLib PRIVATE DEBUG=0)
+endif()

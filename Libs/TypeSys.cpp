@@ -146,6 +146,7 @@ void TypeInfoManT::Init()
         const_cast<TypeInfoT*>(TI)->Base=FindTypeInfoByName(TI->BaseClassName);
         IsInited=false;
 #else
+        // todo: debug purposes.
         IsInited=true;  // Have the assert() in FindTypeInfoByName() not trigger.
         const_cast<TypeInfoT*>(TI)->Base=FindTypeInfoByName(TI->BaseClassName);
         IsInited=false;
