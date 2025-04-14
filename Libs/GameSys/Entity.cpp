@@ -764,7 +764,7 @@ int EntityT::FindByID(lua_State* LuaState)
 {
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<EntityT> Ent = Binder.GetCheckedObjectParam< IntrusivePtrT<EntityT> >(1);
-    IntrusivePtrT<EntityT> Res = Ent->FindID(luaL_checkint(LuaState, 2));
+    IntrusivePtrT<EntityT> Res = Ent->FindID(static_cast<int>(luaL_checkinteger(LuaState, 2)));
 
     if (Res != NULL)
     {
@@ -967,7 +967,7 @@ int EntityT::GetComponent(lua_State* LuaState)
 {
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<EntityT>        Ent  = Binder.GetCheckedObjectParam< IntrusivePtrT<EntityT> >(1);
-    IntrusivePtrT<ComponentBaseT> Comp = Ent->GetComponent(luaL_checkstring(LuaState, 2), lua_tointeger(LuaState, 3));
+    IntrusivePtrT<ComponentBaseT> Comp = Ent->GetComponent(luaL_checkstring(LuaState, 2), static_cast<int>(lua_tointeger(LuaState, 3)));
 
     if (Comp == NULL) lua_pushnil(LuaState);
                  else Binder.Push(Comp);

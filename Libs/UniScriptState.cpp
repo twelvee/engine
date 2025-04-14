@@ -75,7 +75,7 @@ void ScriptBinderT::Anchor(int StackIndex)
 
     lua_pushvalue(m_LuaState, StackIndex);
     lua_call(m_LuaState, 1, 1);
-    const int RefCount = lua_tointeger(m_LuaState, -1);
+    int RefCount = static_cast<int>(lua_tointeger(m_LuaState, -1));
     lua_pop(m_LuaState, 1);
 
     if (RefCount < 1)
@@ -125,7 +125,7 @@ void ScriptBinderT::CheckCppRefs()
         {
             lua_pushvalue(m_LuaState, -2);
             lua_call(m_LuaState, 1, 1);
-            const int RefCount = lua_tointeger(m_LuaState, -1);
+            int RefCount = static_cast<int>(lua_tointeger(m_LuaState, -1));
             lua_pop(m_LuaState, 1);
 
             if (RefCount > 1)
@@ -324,7 +324,7 @@ UniScriptStateT::UniScriptStateT()
     luaL_requiref(m_LuaState, LUA_IOLIBNAME,   luaopen_io,        1); lua_pop(m_LuaState, 1);
     luaL_requiref(m_LuaState, LUA_OSLIBNAME,   luaopen_os,        1); lua_pop(m_LuaState, 1);
     luaL_requiref(m_LuaState, LUA_STRLIBNAME,  luaopen_string,    1); lua_pop(m_LuaState, 1);
-    luaL_requiref(m_LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(m_LuaState, 1);
+//    luaL_requiref(m_LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(m_LuaState, 1);
     luaL_requiref(m_LuaState, LUA_MATHLIBNAME, luaopen_math,      1); lua_pop(m_LuaState, 1);
 
     // Record a pointer to this UniScriptStateT C++ instance in the Lua state,
@@ -493,7 +493,8 @@ void UniScriptStateT::RunPendingCoroutines(float FrameTime)
         lua_sethook(Crt.State, CountHookFunction, LUA_MASKCOUNT, 10000);    // Should have a ConVar for the number of instruction counts!?
 
         // Wait time is over, resume the coroutine.
-        const int Result=lua_resume(Crt.State, NULL, Crt.NumParams);
+        int nresults = 0;
+        const int Result = lua_resume(Crt.State, NULL, Crt.NumParams, &nresults);
 
         if (Result==LUA_YIELD)
         {
@@ -616,7 +617,8 @@ bool UniScriptStateT::StartNewCoroutine(int NumExtraArgs, const char* Signature,
     lua_sethook(NewThread, CountHookFunction, LUA_MASKCOUNT, 10000);    // Should have a ConVar for the number of instruction counts!?
 
     // Start the new coroutine.
-    const int ThreadResult=lua_resume(NewThread, NULL, lua_gettop(NewThread)-1);
+    int nresults = 0;
+    const int ThreadResult = lua_resume(NewThread, NULL, lua_gettop(NewThread)-1, &nresults);
 
  /* if (lua_pcall(m_LuaState, 1+ArgCount, ResCount, 0)!=0)
     {
@@ -643,7 +645,7 @@ bool UniScriptStateT::StartNewCoroutine(int NumExtraArgs, const char* Signature,
             switch (*c)
             {
                 case 'b': *va_arg(vl, bool*  )=lua_toboolean(NewThread, StackIndex)!=0; break;
-                case 'i': *va_arg(vl, int*   )=lua_tointeger(NewThread, StackIndex); break;
+                case 'i': *va_arg(vl, int*   )=static_cast<int>(lua_tointeger(NewThread, StackIndex)); break;
                 case 'f': *va_arg(vl, float* )=float(lua_tonumber(NewThread, StackIndex)); break;
                 case 'd': *va_arg(vl, double*)=lua_tonumber(NewThread, StackIndex); break;
              // case 'E': *va_arg(vl, BaseEntityT**)=(BaseEntityT*)ScriptStateT::GetCheckedObjectParam(NewThread, StackIndex, BaseEntityT::TypeInfo); break;

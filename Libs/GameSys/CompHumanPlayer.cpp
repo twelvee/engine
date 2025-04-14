@@ -1036,7 +1036,7 @@ int ComponentHumanPlayerT::SelectWeapon(lua_State* LuaState)
 
     if (lua_isnumber(LuaState, 2))
     {
-        Comp->SelectWeapon(lua_tointeger(LuaState, 2), lua_toboolean(LuaState, 3) != 0);
+        Comp->SelectWeapon(static_cast<int>(lua_tointeger(LuaState, 2)), lua_toboolean(LuaState, 3) != 0);
         return 0;
     }
 
@@ -1146,7 +1146,7 @@ int ComponentHumanPlayerT::GetRandom(lua_State* LuaState)
 {
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<ComponentHumanPlayerT> Comp = Binder.GetCheckedObjectParam< IntrusivePtrT<ComponentHumanPlayerT> >(1);
-    const int n = luaL_optint(LuaState, 2, 0);
+    int n = static_cast<int>(luaL_optinteger(LuaState, 2, 0));
 
     if (n > 1)
     {

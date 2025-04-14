@@ -39,8 +39,8 @@ static int LuaCI_SetValue(lua_State* LuaState)
     switch (cv->GetType())
     {
         case ConVarT::String:  cv->SetValue(lua_tostring(LuaState, 2)); break;
-        case ConVarT::Integer: cv->SetValue(lua_tointeger(LuaState, 2)); break;
-        case ConVarT::Bool:    cv->SetValue(lua_isboolean(LuaState, 2) ? lua_toboolean(LuaState, 2)!=0 : lua_tointeger(LuaState, 2)!=0); break;
+        case ConVarT::Integer: cv->SetValue(static_cast<int>(lua_tointeger(LuaState, 2))); break;
+        case ConVarT::Bool:    cv->SetValue(lua_isboolean(LuaState, 2) ? lua_toboolean(LuaState, 2)!=0 : static_cast<int>(lua_tointeger(LuaState, 2))!=0); break;
         case ConVarT::Double:  cv->SetValue(lua_tonumber(LuaState, 2)); break;
     }
 

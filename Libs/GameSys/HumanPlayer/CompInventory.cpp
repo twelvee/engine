@@ -132,7 +132,7 @@ int ComponentInventoryT::Set(lua_State* LuaState)
     IntrusivePtrT<ComponentInventoryT> Comp = Binder.GetCheckedObjectParam< IntrusivePtrT<ComponentInventoryT> >(1);
 
     const char* ItemName  = luaL_checkstring(LuaState, 2);
-    const int   ItemCount = luaL_checkint(LuaState, 3);
+    const int   ItemCount = static_cast<int>(luaL_checkinteger(LuaState, 3));
 
     Comp->m_Items[ItemName] = ItemCount;
     return 0;
@@ -159,7 +159,7 @@ int ComponentInventoryT::Add(lua_State* LuaState)
     IntrusivePtrT<ComponentInventoryT> Comp = Binder.GetCheckedObjectParam< IntrusivePtrT<ComponentInventoryT> >(1);
 
     const char* ItemName  = luaL_checkstring(LuaState, 2);
-    const int   ItemCount = Comp->m_Items[ItemName] + luaL_checkint(LuaState, 3);
+    int   ItemCount = Comp->m_Items[ItemName] + static_cast<int>(luaL_checkinteger(LuaState, 3));
 
     if (ItemCount < 0)
     {

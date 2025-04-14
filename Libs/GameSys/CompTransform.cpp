@@ -464,10 +464,10 @@ int ComponentTransformT::LookAt(lua_State* LuaState)
     Pos.z = float(luaL_checknumber(LuaState, 4));
 
     if (lua_isnumber(LuaState, 5))
-        AxisNr = lua_tointeger(LuaState, 5);
+        AxisNr = static_cast<int>(lua_tointeger(LuaState, 5));
 
     if (lua_isnumber(LuaState, 6))
-        NoPitch = lua_tointeger(LuaState, 6) != 0;
+        NoPitch = static_cast<int>(lua_tointeger(LuaState, 6)) != 0;
     else if (lua_isboolean(LuaState, 6))
         NoPitch = lua_toboolean(LuaState, 6) != 0;
 

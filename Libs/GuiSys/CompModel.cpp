@@ -417,7 +417,7 @@ int ComponentModelT::SetAnim(lua_State* LuaState)
     if (!Comp->m_Model)
         luaL_error(LuaState, "The component must be added to a window before this function can be called.");
 
-    const int   AnimNr    = luaL_checkint(LuaState, 2);
+    const int   AnimNr    = (int)luaL_checkinteger(LuaState, 2);
     const float BlendTime = float(luaL_checknumber(LuaState, 3));
     const bool  ForceLoop = lua_isnumber(LuaState, 4) ? (lua_tointeger(LuaState, 4) != 0) : (lua_toboolean(LuaState, 4) != 0);
 

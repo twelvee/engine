@@ -7,6 +7,9 @@ This project is licensed under the terms of the MIT license.
 #include "PhysicsWorld.hpp"
 
 #include "MapFile.hpp"
+#include "BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+#include "BulletCollision/CollisionShapes/btBoxShape.h"
+#include "BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
 #include "ClipSys/CollisionModel_base.hpp"
 #include "ConsoleCommands/Console.hpp"
 #include "Math3D/Polygon.hpp"
@@ -22,6 +25,7 @@ This project is licensed under the terms of the MIT license.
 #endif
 
 
+class btRigidBody;
 using namespace cf;
 
 

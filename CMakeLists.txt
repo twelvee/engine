@@ -119,6 +119,7 @@ include_directories(
         ${CMAKE_SOURCE_DIR}/Libs
         ${ogg_SOURCE_DIR}/include
         ${openal-soft_SOURCE_DIR}/include
+        ${glfw_SOURCE_DIR}/include
 )
 
 # Common libraries
@@ -133,13 +134,13 @@ set(COMMON_LIBS
         SceneGraph
         MatSys
         SoundSys
+        GuiSys
+        GameSys
         ClipSys
         Models
         Plants
         cfsLib
-        minizip
         ogg
-        lua
         ${PLATFORM_LIBS}
 )
 

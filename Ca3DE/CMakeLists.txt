@@ -9,7 +9,13 @@ if(WIN32)
 endif()
 
 add_executable(Cafu ${SOURCES} $<TARGET_OBJECTS:CommonObjects>)
-target_link_libraries(Cafu ${COMMON_LIBS} glfw)
+target_link_libraries(Cafu ${COMMON_LIBS})
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(Cafu PRIVATE DEBUG=1)
+else()
+    target_compile_definitions(Cafu PRIVATE DEBUG=1=0)
+endif()
 
 if(UNIX AND NOT APPLE)
     target_link_options(Cafu PRIVATE "-Wl,-rpath,." "-Wl,--export-dynamic")

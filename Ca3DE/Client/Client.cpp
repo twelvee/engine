@@ -6,8 +6,6 @@ This project is licensed under the terms of the MIT license.
 
 #include "Client.hpp"
 
-#include <lauxlib.h>
-
 #include "ClientStateConnecting.hpp"
 #include "ClientStateIdle.hpp"
 #include "ClientStateInGame.hpp"
@@ -22,7 +20,6 @@ This project is licensed under the terms of the MIT license.
 extern "C"
 {
     #include <lua.h>
-    #include <lualib.h>
     #include <lauxlib.h>
 }
 

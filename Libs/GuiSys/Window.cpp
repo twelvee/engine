@@ -820,7 +820,7 @@ int WindowT::GetComponent(lua_State* LuaState)
 {
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<WindowT>        Win  = Binder.GetCheckedObjectParam< IntrusivePtrT<WindowT> >(1);
-    IntrusivePtrT<ComponentBaseT> Comp = Win->GetComponent(luaL_checkstring(LuaState, 2), lua_tointeger(LuaState, 3));
+    IntrusivePtrT<ComponentBaseT> Comp = Win->GetComponent(luaL_checkstring(LuaState, 2), static_cast<unsigned int>(lua_tointeger(LuaState, 3)));
 
     if (Comp == NULL) lua_pushnil(LuaState);
                  else Binder.Push(Comp);

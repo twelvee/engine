@@ -198,7 +198,7 @@ int ComponentScriptT::InitEventTypes(lua_State* LuaState)
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<ComponentScriptT> Comp = Binder.GetCheckedObjectParam< IntrusivePtrT<ComponentScriptT> >(1);
 
-    const unsigned int NUM_EVENT_TYPES = unsigned(luaL_checkint(LuaState, 2));
+    const unsigned int NUM_EVENT_TYPES = static_cast<unsigned>(luaL_checkinteger(LuaState, 2));
 
     if (NUM_EVENT_TYPES < 1 || NUM_EVENT_TYPES > 8)    // If this is ever too less, simply increase it.
         luaL_argerror(LuaState, 2, "The number of event types must be an integer in the range from 1 to 8.");
@@ -243,7 +243,7 @@ int ComponentScriptT::PostEvent(lua_State* LuaState)
     ScriptBinderT Binder(LuaState);
     IntrusivePtrT<ComponentScriptT> Comp = Binder.GetCheckedObjectParam< IntrusivePtrT<ComponentScriptT> >(1);
 
-    const unsigned int EventType = unsigned(luaL_checkint(LuaState, 2));
+    const unsigned int EventType = unsigned(luaL_checkinteger(LuaState, 2));
 
     if (EventType == 0)
         luaL_argerror(LuaState, 2, "Use event type numbers starting from 1 (not from 0).");

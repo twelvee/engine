@@ -53,7 +53,7 @@ ConsoleInterpreterImplT::ConsoleInterpreterImplT()
     luaL_requiref(LuaState, LUA_IOLIBNAME,   luaopen_io,        1); lua_pop(LuaState, 1);
     luaL_requiref(LuaState, LUA_OSLIBNAME,   luaopen_os,        1); lua_pop(LuaState, 1);
     luaL_requiref(LuaState, LUA_STRLIBNAME,  luaopen_string,    1); lua_pop(LuaState, 1);
-    luaL_requiref(LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(LuaState, 1);
+//    luaL_requiref(LuaState, LUA_BITLIBNAME,  luaopen_bit32,     1); lua_pop(LuaState, 1);
     luaL_requiref(LuaState, LUA_MATHLIBNAME, luaopen_math,      1); lua_pop(LuaState, 1);
 
     // Load the console library. (Adds a global table with name "Console" to the LuaState with the functions of the ConsoleI interface.)
@@ -165,12 +165,12 @@ void ConsoleInterpreterImplT::Register(ConVarT* ConVar)
             }
 
             case ConVarT::Integer:
-                ConVar->SetValue(lua_tointeger(LuaState, -1));
+                ConVar->SetValue(static_cast<int>(lua_tointeger(LuaState, -1)));
                 break;
 
             case ConVarT::Bool:
                 // I also want to treat the number 0 as false, not just "false" and "nil".
-                ConVar->SetValue(lua_isnumber(LuaState, -1) ? lua_tointeger(LuaState, -1)!=0 : lua_toboolean(LuaState, -1)!=0);
+                ConVar->SetValue(lua_isnumber(LuaState, -1) ? static_cast<int>(lua_tointeger(LuaState, -1))!=0 : lua_toboolean(LuaState, -1)!=0);
                 break;
 
             case ConVarT::Double:
@@ -443,12 +443,12 @@ int ConsoleInterpreterImplT::Lua_set_Callback(lua_State* LuaState)
         }
 
         case ConVarT::Integer:
-            ConVar->SetValue(lua_tointeger(LuaState, 3));
+            ConVar->SetValue(static_cast<int>(lua_tointeger(LuaState, 3)));
             break;
 
         case ConVarT::Bool:
             // I also want to treat the number 0 as false, not just "false" and "nil".
-            ConVar->SetValue(lua_isnumber(LuaState, 3) ? lua_tointeger(LuaState, 3)!=0 : lua_toboolean(LuaState, 3)!=0);
+            ConVar->SetValue(lua_isnumber(LuaState, 3) ? static_cast<int>(lua_tointeger(LuaState, 3))!=0 : lua_toboolean(LuaState, 3)!=0);
             break;
 
         case ConVarT::Double:

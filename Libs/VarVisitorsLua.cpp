@@ -196,25 +196,25 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarT<double>& Var)
 
 void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarT<int>& Var)
 {
-    Var.Set(luaL_checkint(m_LuaState, -1));
+    Var.Set(static_cast<int>(luaL_checkinteger(m_LuaState, -1)));
 }
 
 
 void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarT<unsigned int>& Var)
 {
-    Var.Set(luaL_checkint(m_LuaState, -1));
+    Var.Set(static_cast<int>(luaL_checkinteger(m_LuaState, -1)));
 }
 
 
 void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarT<uint16_t>& Var)
 {
-    Var.Set(luaL_checkint(m_LuaState, -1));
+    Var.Set(static_cast<int>(luaL_checkinteger(m_LuaState, -1)));
 }
 
 
 void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarT<uint8_t>& Var)
 {
-    Var.Set(luaL_checkint(m_LuaState, -1));
+    Var.Set(static_cast<int>(luaL_checkinteger(m_LuaState, -1)));
 }
 
 
@@ -322,7 +322,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint32_t>& Var)
         for (int i = 1; i <= Num; i++)
         {
             lua_rawgeti(m_LuaState, -1, i);
-            Var.PushBack(lua_tointeger(m_LuaState, -1));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, -1)));
             lua_pop(m_LuaState, 1);
         }
     }
@@ -331,7 +331,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint32_t>& Var)
         // Stack index 1 has the "this" object,
         // stack index 2 has the variable name.
         for (int i = 3; i <= lua_gettop(m_LuaState); i++)
-            Var.PushBack(lua_tointeger(m_LuaState, i));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, i)));
     }
 }
 
@@ -347,7 +347,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint16_t>& Var)
         for (int i = 1; i <= Num; i++)
         {
             lua_rawgeti(m_LuaState, -1, i);
-            Var.PushBack(lua_tointeger(m_LuaState, -1));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, -1)));
             lua_pop(m_LuaState, 1);
         }
     }
@@ -356,7 +356,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint16_t>& Var)
         // Stack index 1 has the "this" object,
         // stack index 2 has the variable name.
         for (int i = 3; i <= lua_gettop(m_LuaState); i++)
-            Var.PushBack(lua_tointeger(m_LuaState, i));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, i)));
     }
 }
 
@@ -372,7 +372,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint8_t>& Var)
         for (int i = 1; i <= Num; i++)
         {
             lua_rawgeti(m_LuaState, -1, i);
-            Var.PushBack(lua_tointeger(m_LuaState, -1));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, -1)));
             lua_pop(m_LuaState, 1);
         }
     }
@@ -381,7 +381,7 @@ void VarVisitorSetFromLuaT::visit(cf::TypeSys::VarArrayT<uint8_t>& Var)
         // Stack index 1 has the "this" object,
         // stack index 2 has the variable name.
         for (int i = 3; i <= lua_gettop(m_LuaState); i++)
-            Var.PushBack(lua_tointeger(m_LuaState, i));
+            Var.PushBack(static_cast<int>(lua_tointeger(m_LuaState, i)));
     }
 }
 
