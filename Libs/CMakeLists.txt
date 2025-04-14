@@ -12,6 +12,7 @@ add_subdirectory(TextParser)
 add_subdirectory(Terrain)
 add_subdirectory(Bitmap)
 add_subdirectory(Models)
+add_subdirectory(Plants)
 
 # find_package(ZLIB REQUIRED)
 

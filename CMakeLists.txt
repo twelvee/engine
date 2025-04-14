@@ -135,6 +135,7 @@ set(COMMON_LIBS
         SoundSys
         ClipSys
         Models
+        Plants
         cfsLib
         minizip
         ogg

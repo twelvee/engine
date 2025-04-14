@@ -28,7 +28,7 @@ float PlantDescriptionT::ProfileT::Compute(float p, float Value0, float Value1) 
         case InvLinear    : return            p            *Value0+(1.0f-p          )  *Value1;         // (0, 0.0) - (1, 1)
         case InvLinearRamp: return (0.5f+0.5f*p)           *Value0+(0.5f+0.5f*(1.0f-p))*Value1;         // (0, 0.5) - (1, 1)
         case ConstantAvg  : return (1.0f-Parameter)        *Value0+      Parameter     *Value1;         // (0, Parameter) - (1, Parameter)
-        case Round        : return (1.0f-sin(p*3.1415926f))*Value0+sin(p*3.1415926f)   *Value1;
+        case Round        : return (1.0f-sinf(p*3.1415926f))*Value0+sinf(p*3.1415926f)   *Value1;
         // case Round2       : return ((1.0-sin(p*3.1415926))*Value0+sin(p*3.1415926)*Value1)*((1.0-sin(p*3.1415926))*Value0+sin(p*3.1415926)*Value1);
         default           : return Value0;
     }
