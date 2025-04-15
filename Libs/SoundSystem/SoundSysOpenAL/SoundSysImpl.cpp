@@ -9,7 +9,6 @@ This project is licensed under the terms of the MIT license.
 #include "Buffer.hpp"
 #include "BufferManager.hpp"
 #include "MixerTrack.hpp"
-#include "../ExtLibs/freealut/include/AL/alut.h"
 #include "../Common/SoundStream.hpp"
 #include "../SoundShader.hpp"
 
@@ -133,17 +132,6 @@ bool SoundSysImplT::Initialize()
 
     alcMakeContextCurrent(m_Context);
 
-    // Initialize ALUT.
-    if (!alutInitWithoutContext(NULL, NULL))
-    {
-        std::cout << "OpenAL: Couldn't initialize ALUT library\n";
-        alcMakeContextCurrent(NULL);
-        alcDestroyContext(m_Context);
-        alcCloseDevice(m_Device);
-        assert(alGetError()==AL_NO_ERROR);
-        return false;
-    }
-
     // const char* SupportedBuffer=alutGetMIMETypes(ALUT_LOADER_BUFFER);
     // const char* SupportedMemory=alutGetMIMETypes(ALUT_LOADER_MEMORY);
 
@@ -172,7 +160,6 @@ void SoundSysImplT::Release()
     alcDestroyContext(m_Context);
     alcCloseDevice(m_Device);
     // assert(alGetError()==AL_NO_ERROR);   // Commented out because it causes me trouble in Linux right now. TODO/FIXME!
-    alutExit();
 
     m_IsInitialized=false;
 }

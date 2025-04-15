@@ -212,11 +212,11 @@ OptionsBar_NewBezierPatchToolT::OptionsBar_NewBezierPatchToolT(wxWindow* Parent,
 
     m_CheckConvex=new wxCheckBox( this, -1, wxT("with convex endcaps"), wxDefaultPosition, wxDefaultSize, 0 );
     m_CheckConvex->Enable(false);
-    item2->Add( m_CheckConvex, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item2->Add( m_CheckConvex, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
     m_CheckConcave=new wxCheckBox( this, -1, wxT("with concave endcaps"), wxDefaultPosition, wxDefaultSize, 0 );
     m_CheckConcave->Enable(false);
-    item2->Add( m_CheckConcave, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item2->Add( m_CheckConcave, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
     item0->Add( item2, 0, wxALIGN_CENTER, 5 );
 
@@ -373,12 +373,12 @@ OptionsBar_NewTerrainToolT::OptionsBar_NewTerrainToolT(wxWindow* Parent, MapDocu
     m_CheckBoxAddWallsAndCeil=new wxCheckBox(this, -1, wxT("Add sky walls and ceiling"), wxDefaultPosition, wxDefaultSize, 0 );
     m_CheckBoxAddWallsAndCeil->SetValue(true);  // Check it per default so that users get some hint about how terrains are supposed to work.
     m_CheckBoxAddWallsAndCeil->SetToolTip( wxT("Add four walls and a ceiling brush around the terrain that have the sky material applied.") );
-    item7->Add(m_CheckBoxAddWallsAndCeil, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item7->Add(m_CheckBoxAddWallsAndCeil, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
     m_CheckBoxAddFloor=new wxCheckBox(this, -1, wxT("Add caulk floor"), wxDefaultPosition, wxDefaultSize, 0 );
     m_CheckBoxAddFloor->SetValue(true);     // Check it per default so that users get some hint about how terrains are supposed to work.
     m_CheckBoxAddFloor->SetToolTip( wxT("As worlds must be watertightly sealed, even outdoor terrains must on the \"inside\" of a world. Thus, some floor brush for terrains is required, and this checkbox adds one automatically.") );
-    item7->Add(m_CheckBoxAddFloor, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item7->Add(m_CheckBoxAddFloor, 0, wxALIGN_CENTER_HORIZONTAL, 5 );
 
     item0->Add( item7, 0, wxALIGN_CENTER|wxLEFT, 5 );
 

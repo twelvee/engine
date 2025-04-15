@@ -273,10 +273,10 @@ TerrainGenerationDialogFB::TerrainGenerationDialogFB( wxWindow* parent, wxWindow
 	wxStaticText* m_staticText15;
 	m_staticText15 = new wxStaticText( this, wxID_ANY, wxT("Frequency:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText15->Wrap( -1 );
-	bSizer17->Add( m_staticText15, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer17->Add( m_staticText15, 1, wxALL, 5 );
 	
 	m_SpinCtrlFrequency = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 55,-1 ), wxSP_ARROW_KEYS, 1, 200, 10 );
-	bSizer17->Add( m_SpinCtrlFrequency, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	bSizer17->Add( m_SpinCtrlFrequency, 0, wxRIGHT|wxLEFT, 5 );
 	
 	bSizer16->Add( bSizer17, 1, wxEXPAND, 5 );
 	
@@ -289,10 +289,10 @@ TerrainGenerationDialogFB::TerrainGenerationDialogFB( wxWindow* parent, wxWindow
 	wxStaticText* m_staticText151;
 	m_staticText151 = new wxStaticText( this, wxID_ANY, wxT("Octaves:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText151->Wrap( -1 );
-	bSizer171->Add( m_staticText151, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer171->Add( m_staticText151, 1, wxALL, 5 );
 	
 	m_SpinCtrlOctaves = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 55,-1 ), wxSP_ARROW_KEYS, 1, 8, 4 );
-	bSizer171->Add( m_SpinCtrlOctaves, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	bSizer171->Add( m_SpinCtrlOctaves, 0, wxRIGHT|wxLEFT, 5 );
 	
 	bSizer16->Add( bSizer171, 1, wxEXPAND, 5 );
 	
@@ -310,10 +310,10 @@ TerrainGenerationDialogFB::TerrainGenerationDialogFB( wxWindow* parent, wxWindow
 	wxStaticText* m_staticText154;
 	m_staticText154 = new wxStaticText( this, wxID_ANY, wxT("Lacunarity:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText154->Wrap( -1 );
-	bSizer174->Add( m_staticText154, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer174->Add( m_staticText154, 1, wxALL, 5 );
 	
 	m_SpinCtrlLacunarity = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 55,-1 ), wxSP_ARROW_KEYS, 10, 40, 20 );
-	bSizer174->Add( m_SpinCtrlLacunarity, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	bSizer174->Add( m_SpinCtrlLacunarity, 0, wxRIGHT|wxLEFT, 5 );
 	
 	bSizer32->Add( bSizer174, 0, wxEXPAND, 5 );
 	
@@ -326,10 +326,10 @@ TerrainGenerationDialogFB::TerrainGenerationDialogFB( wxWindow* parent, wxWindow
 	wxStaticText* m_staticText152;
 	m_staticText152 = new wxStaticText( this, wxID_ANY, wxT("Persistence:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText152->Wrap( -1 );
-	bSizer172->Add( m_staticText152, 1, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	bSizer172->Add( m_staticText152, 1, wxALL, 5 );
 	
 	m_SpinCtrlPersistence = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 55,-1 ), wxSP_ARROW_KEYS, 0, 100, 50 );
-	bSizer172->Add( m_SpinCtrlPersistence, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	bSizer172->Add( m_SpinCtrlPersistence, 0, wxRIGHT|wxLEFT, 5 );
 	
 	bSizer32->Add( bSizer172, 0, wxEXPAND, 5 );
 	
@@ -346,22 +346,22 @@ TerrainGenerationDialogFB::TerrainGenerationDialogFB( wxWindow* parent, wxWindow
 	wxStaticText* m_staticText153;
 	m_staticText153 = new wxStaticText( this, wxID_ANY, wxT("Seed:"), wxDefaultPosition, wxDefaultSize, 0 );
 	m_staticText153->Wrap( -1 );
-	bSizer173->Add( m_staticText153, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5 );
+	bSizer173->Add( m_staticText153, 1, wxALL, 5 );
 	
 	m_SpinCtrlSeed = new wxSpinCtrl( this, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 55,-1 ), wxSP_ARROW_KEYS, 1, 1000, 1 );
-	bSizer173->Add( m_SpinCtrlSeed, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxLEFT, 5 );
+	bSizer173->Add( m_SpinCtrlSeed, 0, wxRIGHT|wxLEFT, 5 );
 	
-	bSizer15->Add( bSizer173, 0, wxALIGN_CENTER_HORIZONTAL|wxBOTTOM, 5 );
+	bSizer15->Add( bSizer173, 0, wxBOTTOM, 5 );
 	
 	m_PreviewPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxSize( 192,192 ), wxTAB_TRAVERSAL );
-	bSizer15->Add( m_PreviewPanel, 0, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer15->Add( m_PreviewPanel, 0, wxALL, 5 );
 	
 	wxBoxSizer* bSizer33;
 	bSizer33 = new wxBoxSizer( wxHORIZONTAL );
 	
 	wxButton* m_button4;
 	m_button4 = new wxButton( this, wxID_OK, wxT("Generate Terrain"), wxDefaultPosition, wxDefaultSize, 0 );
-	bSizer33->Add( m_button4, 1, wxALL|wxALIGN_CENTER_HORIZONTAL, 5 );
+	bSizer33->Add( m_button4, 1, wxALL, 5 );
 	
 	m_ButtonCancel = new wxButton( this, wxID_CANCEL, wxT("Cancel"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer33->Add( m_ButtonCancel, 1, wxALL, 5 );

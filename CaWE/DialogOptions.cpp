@@ -179,7 +179,7 @@ wxSizer* OptionsDialogT::OptionsDialogInit( wxWindow *parent, bool call_fit, boo
     // OptionsMaterialsTabInit( item7, false );
     // item2->AddPage( item7, wxT("Materials") );
 
-    item0->Add( item2, 1, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item2, 1, wxGROW|wxALL, 5 );
 
     wxBoxSizer *item8 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -196,7 +196,7 @@ wxSizer* OptionsDialogT::OptionsDialogInit( wxWindow *parent, bool call_fit, boo
     wxButton *item12 = new wxButton( parent, wxID_HELP, wxT("Help"), wxDefaultPosition, wxDefaultSize, 0 );
     item8->Add( item12, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item0->Add( item8, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item8, 0, wxALIGN_RIGHT|wxALL, 5 );
 
     if (set_sizer)
     {
@@ -213,7 +213,7 @@ wxSizer* OptionsDialogT::OptionsGameConfigsTabInit( wxWindow *parent, bool call_
     wxBoxSizer *item0 = new wxBoxSizer( wxVERTICAL );
 
     wxStaticText *item1 = new wxStaticText( parent, -1, wxT("Configuration:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item0->Add( item1, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxTOP, 5 );
+    item0->Add( item1, 0, wxLEFT|wxRIGHT|wxTOP, 5 );
 
 
     wxBoxSizer *item2 = new wxBoxSizer( wxHORIZONTAL );
@@ -221,12 +221,12 @@ wxSizer* OptionsDialogT::OptionsGameConfigsTabInit( wxWindow *parent, bool call_
     GameCfg_GameConfigChoice = new wxChoice( parent, ID_CHOICE_GAMECFG_GameConfigs, wxDefaultPosition, wxDefaultSize, 0, NULL, wxCB_SORT /*FIXME: Temp. work-around that works on Win32. Other platforms? Note: Choice!=ComboBox*/);
     item2->Add(GameCfg_GameConfigChoice, 1, wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item0->Add( item2, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add( item2, 0, wxGROW, 5 );
 
 
 
     wxStaticLine *item5 = new wxStaticLine( parent, -1, wxDefaultPosition, wxSize(20,-1), wxLI_HORIZONTAL );
-    item0->Add( item5, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item5, 0, wxGROW|wxALL, 5 );
 
     wxBoxSizer *item28 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -242,7 +242,7 @@ wxSizer* OptionsDialogT::OptionsGameConfigsTabInit( wxWindow *parent, bool call_
     GameCfg_DefaultLightmapScale = new wxTextCtrl( parent, -1, wxT(""), wxDefaultPosition, wxSize(80,-1), 0 );
     item28->Add(GameCfg_DefaultLightmapScale, 1, wxALIGN_CENTER|wxALL, 5 );
 
-    item0->Add( item28, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add( item28, 0, wxGROW, 5 );
 
     wxBoxSizer *item33 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -260,7 +260,7 @@ wxSizer* OptionsDialogT::OptionsGameConfigsTabInit( wxWindow *parent, bool call_
     item36->Disable();
     item33->Add( item36, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item0->Add( item33, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add( item33, 0, wxGROW, 5 );
 
     if (set_sizer)
     {
@@ -289,13 +289,13 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     item7->SetValidator(wxGenericValidator(&Options.general.UndoLevels));
     item5->Add( item7, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item2->Add( item5, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxTOP|wxBOTTOM, 5 );
+    item2->Add( item5, 0, wxRIGHT|wxTOP|wxBOTTOM, 5 );
 
     // Maybe later...
     // wxCheckBox *item9 = new wxCheckBox( parent, -1, wxT("Stretch arches to fit original bounding rectangle"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.general.StretchArches));
     // item2->Add( item9, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
-    item0->Add( item2, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item2, 0, wxGROW|wxALL, 5 );
 
     //item0->Add( 20, 20, 1, wxALIGN_CENTER|wxALL, 5 );
 
@@ -303,7 +303,7 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     wxStaticBoxSizer *item11 = new wxStaticBoxSizer( item10, wxVERTICAL );
 
     wxStaticText *item12 = new wxStaticText( parent, -1, wxT("Engine executable:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item11->Add( item12, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT, 5 );
+    item11->Add( item12, 0, wxLEFT|wxRIGHT, 5 );
 
     wxBoxSizer *item13 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -314,10 +314,10 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     wxButton *item14 = new wxButton( parent, ID_BUTTON_GENERAL_BrowseCafuExe, wxT("Browse..."), wxDefaultPosition, wxDefaultSize, 0 );
     item13->Add( item14, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item11->Add( item13, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item11->Add( item13, 0, wxGROW, 5 );
 
     wxStaticText *item15 = new wxStaticText( parent, -1, wxT("CaBSP executable:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item11->Add( item15, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT, 5 );
+    item11->Add( item15, 0, wxLEFT|wxRIGHT, 5 );
 
     wxBoxSizer *item16 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -328,10 +328,10 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     wxButton *item17 = new wxButton( parent, ID_BUTTON_GENERAL_BrowseCaBSPExe, wxT("Browse..."), wxDefaultPosition, wxDefaultSize, 0 );
     item16->Add( item17, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item11->Add( item16, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item11->Add( item16, 0, wxGROW, 5 );
 
     wxStaticText *item18 = new wxStaticText( parent, -1, wxT("CaPVS executable:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item11->Add( item18, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT, 5 );
+    item11->Add( item18, 0, wxLEFT|wxRIGHT, 5 );
 
     wxBoxSizer *item19 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -342,10 +342,10 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     wxButton *item20 = new wxButton( parent, ID_BUTTON_GENERAL_BrowseCaPVSExe, wxT("Browse..."), wxDefaultPosition, wxDefaultSize, 0 );
     item19->Add( item20, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item11->Add( item19, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item11->Add( item19, 0, wxGROW, 5 );
 
     wxStaticText *item21 = new wxStaticText( parent, -1, wxT("CaLight executable:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item11->Add( item21, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT, 5 );
+    item11->Add( item21, 0, wxLEFT|wxRIGHT, 5 );
 
     wxBoxSizer *item22 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -356,13 +356,13 @@ wxSizer* OptionsDialogT::OptionsGeneralTabInit( wxWindow *parent, bool call_fit,
     wxButton *item23 = new wxButton( parent, ID_BUTTON_GENERAL_BrowseCaLightExe, wxT("Browse..."), wxDefaultPosition, wxDefaultSize, 0 );
     item22->Add( item23, 0, wxALIGN_CENTER|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item11->Add( item22, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item11->Add( item22, 0, wxGROW, 5 );
 
-    item0->Add( item11, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item11, 0, wxGROW|wxALL, 5 );
 
     // Need the additional "\n\n", because the size of the wxStaticText doesn't take the auto-line-wrapping into account.
     wxStaticText *item24 = new wxStaticText( parent, -1, wxString("Your CaWE configuration files are located at:\n")+wxStandardPaths::Get().GetUserDataDir()+"\n\n", wxDefaultPosition, wxDefaultSize, 0 );
-    item0->Add( item24, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item24, 0, wxGROW|wxALL, 5 );
 
     if (set_sizer)
     {
@@ -382,25 +382,25 @@ wxSizer* OptionsDialogT::Options2DViewsTabInit( wxWindow *parent, bool call_fit,
     wxStaticBoxSizer *item1 = new wxStaticBoxSizer( item2, wxVERTICAL );
 
     wxCheckBox *item6 = new wxCheckBox( parent, -1, wxT("Draw Vertices"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.DrawVertices));
-    item1->Add( item6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add( item6, 0, wxALL, 5 );
 
     wxCheckBox *item10 = new wxCheckBox( parent, -1, wxT("Use group colors for object lines"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.UseGroupColors));
-    item1->Add( item10, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add( item10, 0, wxALL, 5 );
 
     // Maybe later...
     // wxCheckBox *item12 = new wxCheckBox( parent, -1, wxT("Reorient primitives on creation in the current 2D view"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.OrientPrimitives));
     // item1->Add( item12, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 
     wxCheckBox *item14 = new wxCheckBox( parent, -1, wxT("Selection box selects by center handles only"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.SelectByHandles));
-    item1->Add( item14, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add( item14, 0, wxALL, 5 );
 
     wxCheckBox* ShowEntInfoCB = new wxCheckBox( parent, -1, wxT("Show entity info (class, name, ...)"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.ShowEntityInfo));
-    item1->Add(ShowEntInfoCB, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add(ShowEntInfoCB, 0, wxALL, 5 );
 
     wxCheckBox* ShowEntTargetsCB = new wxCheckBox( parent, -1, wxT("Show entity targets for game scripts and code"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view2d.ShowEntityTargets));
-    item1->Add(ShowEntTargetsCB, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add(ShowEntTargetsCB, 0, wxALL, 5 );
 
-    item0->Add( item1, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item1, 0, wxGROW|wxALL, 5 );
 
     wxStaticBox *item16 = new wxStaticBox( parent, -1, wxT("Grid") );
     wxStaticBoxSizer *item15 = new wxStaticBoxSizer( item16, wxVERTICAL );
@@ -431,7 +431,7 @@ wxSizer* OptionsDialogT::Options2DViewsTabInit( wxWindow *parent, bool call_fit,
     wxColourPickerCtrl* item21=new wxColourPickerCtrl(parent, -1, Options.Grid.ColorBaseGrid, wxDefaultPosition, wxDefaultSize, 0, ColorValidatorT(Options.Grid.ColorBaseGrid));
     item17->Add( item21, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item15->Add( item17, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item15->Add( item17, 0, NULL, 5 );
 
 
     wxBoxSizer *item25 = new wxBoxSizer( wxHORIZONTAL );
@@ -449,7 +449,7 @@ wxSizer* OptionsDialogT::Options2DViewsTabInit( wxWindow *parent, bool call_fit,
     wxColourPickerCtrl* item28a=new wxColourPickerCtrl(parent, -1, Options.Grid.ColorHighlight1, wxDefaultPosition, wxDefaultSize, 0, ColorValidatorT(Options.Grid.ColorHighlight1));
     item25->Add( item28a, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item15->Add( item25, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item15->Add( item25, 0, NULL, 5 );
 
 
     wxBoxSizer *itemB25 = new wxBoxSizer( wxHORIZONTAL );
@@ -467,11 +467,11 @@ wxSizer* OptionsDialogT::Options2DViewsTabInit( wxWindow *parent, bool call_fit,
     wxColourPickerCtrl* itemB28a=new wxColourPickerCtrl(parent, -1, Options.Grid.ColorHighlight2, wxDefaultPosition, wxDefaultSize, 0, ColorValidatorT(Options.Grid.ColorHighlight2));
     itemB25->Add( itemB28a, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item15->Add( itemB25, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item15->Add( itemB25, 0, NULL, 5 );
 
 
     wxCheckBox *item30 = new wxCheckBox( parent, -1, wxT("Dotted Grid"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.Grid.UseDottedGrid));
-    item15->Add( item30, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item15->Add( item30, 0, wxALL, 5 );
 
 
     wxBoxSizer *HideGrid_Sizer = new wxBoxSizer( wxHORIZONTAL );
@@ -486,10 +486,10 @@ wxSizer* OptionsDialogT::Options2DViewsTabInit( wxWindow *parent, bool call_fit,
     wxStaticText *HideGrid_Text2 = new wxStaticText( parent, -1, wxT("pixels."), wxDefaultPosition, wxDefaultSize, 0 );
     HideGrid_Sizer->Add( HideGrid_Text2, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item15->Add( HideGrid_Sizer, 0, wxALIGN_CENTER_VERTICAL, 5 );
+    item15->Add( HideGrid_Sizer, 0, NULL, 5 );
 
 
-    item0->Add( item15, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item15, 0, wxGROW|wxALL, 5 );
 
     if (set_sizer)
     {
@@ -509,59 +509,59 @@ wxSizer* OptionsDialogT::Options3DViewsTabInit( wxWindow *parent, bool call_fit,
     wxStaticBoxSizer *item1 = new wxStaticBoxSizer( item2, wxVERTICAL );
 
     wxCheckBox *item4 = new wxCheckBox( parent, -1, wxT("Animate models"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view3d.AnimateModels));
-    item1->Add( item4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item1->Add( item4, 0, wxALL, 5 );
 
     wxFlexGridSizer *item5 = new wxFlexGridSizer( 2, 0, 0 );
     item5->AddGrowableCol(1, 1);    // Grow the second column with a proportion of 1.
 
     wxStaticText *item6 = new wxStaticText( parent, -1, wxT("Back clipping plane:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item5->Add( item6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item5->Add( item6, 0, wxALL, 5 );
 
     wxSlider *item7 = new wxSlider( parent, -1, 0, 500, 100000, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL|wxSL_LABELS, wxGenericValidator(&Options.view3d.BackPlane));
-    item5->Add( item7, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 5 );
+    item5->Add( item7, 0, wxGROW | wxALL, 5 );
 
     wxStaticText *item8 = new wxStaticText( parent, -1, wxT("Model render distance:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item5->Add( item8, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item5->Add( item8, 0, wxALL, 5 );
 
     wxSlider *item9 = new wxSlider( parent, -1, 0, 0, 10000, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL|wxSL_LABELS, wxGenericValidator(&Options.view3d.ModelDistance));
-    item5->Add( item9, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 5 );
+    item5->Add( item9, 0, wxGROW  | wxALL, 5 );
 
-    item1->Add( item5, 0, wxGROW | wxALIGN_CENTER_VERTICAL, 5 );
+    item1->Add( item5, 0, wxGROW , 5 );
 
-    item0->Add( item1, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item1, 0, wxGROW|wxALL, 5 );
 
     wxStaticBox *item11 = new wxStaticBox( parent, -1, wxT("Navigation") );
     wxStaticBoxSizer *item10 = new wxStaticBoxSizer( item11, wxVERTICAL );
 
     wxCheckBox *item13 = new wxCheckBox( parent, -1, wxT("Reverse mouse Y axis (aircraft style)"), wxDefaultPosition, wxDefaultSize, 0, wxGenericValidator(&Options.view3d.ReverseY));
-    item10->Add( item13, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item10->Add( item13, 0, wxALL, 5 );
 
     wxFlexGridSizer *item14 = new wxFlexGridSizer( 2, 0, 0 );
     item14->AddGrowableCol(1, 1);   // Grow the second column with a proportion of 1.
 
     wxStaticText *item15 = new wxStaticText( parent, -1, wxT("Max. camera velocity:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->Add( item15, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item14->Add( item15, 0, wxALL, 5 );
 
     wxSlider *item16 = new wxSlider( parent, -1, 0, 100, 10000, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL|wxSL_LABELS, wxGenericValidator(&Options.view3d.MaxCameraVelocity));
-    item14->Add( item16, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 5 );
+    item14->Add( item16, 0, wxGROW | wxALL, 5 );
 
     wxStaticText *item17 = new wxStaticText( parent, -1, wxT("Time to top speed (msec):"), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->Add( item17, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item14->Add( item17, 0, wxALL, 5 );
 
     wxSlider *item18 = new wxSlider( parent, -1, 0, 0, 10000, wxDefaultPosition, wxDefaultSize, wxSL_HORIZONTAL|wxSL_LABELS, wxGenericValidator(&Options.view3d.TimeToMaxSpeed));
-    item14->Add( item18, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 5 );
+    item14->Add( item18, 0, wxGROW | wxALL, 5 );
 
     wxStaticText* st_MouseSensitivity=new wxStaticText( parent, -1, wxT("Mouse sensitivity:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item14->Add( st_MouseSensitivity, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item14->Add( st_MouseSensitivity, 0, wxALL, 5 );
 
     wxSpinCtrlDouble* sc_MouseSensitivity=new wxSpinCtrlDouble(parent, ID_SPINCTRL_3DVIEWS_MouseSensitivity,
         wxString::Format("%f", Options.view3d.MouseSensitivity), wxDefaultPosition, wxDefaultSize,
         wxSP_ARROW_KEYS, 0.01, 1.0, Options.view3d.MouseSensitivity, 0.01);
-    item14->Add( sc_MouseSensitivity, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 5 );
+    item14->Add( sc_MouseSensitivity, 0, wxGROW | wxALL, 5 );
 
-    item10->Add( item14, 0, wxGROW | wxALIGN_CENTER_VERTICAL, 5 );
+    item10->Add( item14, 0, wxGROW , 5 );
 
-    item0->Add( item10, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item10, 0, wxGROW|wxALL, 5 );
 
     if (set_sizer)
     {

@@ -49,7 +49,7 @@ MapInfoDialogT::MapInfoDialogT(MapDocumentT& MapDoc)
     for (std::map<const cf::TypeSys::TypeInfoT*, unsigned long>::const_iterator It=Stats.begin(); It!=Stats.end(); ++It)
     {
         wxStaticText* LeftCell = new wxStaticText(this, -1, It->first->ClassName, wxDefaultPosition, wxDefaultSize, 0 );
-        item2->Add( LeftCell, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxTOP, 5 );
+        item2->Add( LeftCell, 0, wxLEFT|wxRIGHT|wxTOP, 5 );
     }
 
     item1->Add( item2, 0, wxALIGN_CENTER|wxALL, 5 );
@@ -59,16 +59,16 @@ MapInfoDialogT::MapInfoDialogT(MapDocumentT& MapDoc)
     for (std::map<const cf::TypeSys::TypeInfoT*, unsigned long>::const_iterator It=Stats.begin(); It!=Stats.end(); ++It)
     {
         wxStaticText* RightCell = new wxStaticText(this, -1, wxString::Format("%lu", It->second), wxDefaultPosition, wxDefaultSize, 0 );
-        item9->Add( RightCell, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxTOP, 5 );
+        item9->Add( RightCell, 0, wxLEFT|wxRIGHT|wxTOP, 5 );
     }
 
     item1->Add( item9, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item0->Add( item1, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item1, 0, wxALL, 5 );
 
     wxButton *item18 = new wxButton(this, wxID_CANCEL, wxT("OK"), wxDefaultPosition, wxDefaultSize, 0 );
     item18->SetDefault();
-    item0->Add( item18, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item18, 0, wxALIGN_RIGHT|wxALL, 5 );
 
 
     this->SetSizer(item0);

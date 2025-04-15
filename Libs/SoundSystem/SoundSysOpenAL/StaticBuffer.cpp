@@ -11,8 +11,6 @@ This project is licensed under the terms of the MIT license.
 #include "Templates/Array.hpp"
 #include "String.hpp"
 
-#include "../ExtLibs/freealut/include/AL/alut.h"
-
 #include <iostream>
 
 
@@ -21,7 +19,7 @@ StaticBufferT::StaticBufferT(const std::string& FileName, bool ForceMono)
       m_Buffer(AL_NONE)
 {
     // If the file name ends with .ogg or .mp3 we use MP3StreamT or OggVorbisStreamT to read all PCM data of the file into a local buffer.
-    if (cf::String::EndsWith(FileName, ".mp3") || cf::String::EndsWith(FileName, ".ogg"))
+    if (cf::String::EndsWith(FileName, ".ogg"))
     {
         SoundStreamT* Stream=SoundStreamT::Create(FileName);    // Throws an exception of type std::runtime_error on failure.
         ArrayT<unsigned char> StreamBuffer;
@@ -57,9 +55,9 @@ StaticBufferT::StaticBufferT(const std::string& FileName, bool ForceMono)
     {
         // Other files are handled by ALUT.
         // TODO: Use alutLoadMemoryFromFile() instead, reduce to mono if necessary!
-        m_Buffer=alutCreateBufferFromFile(FileName.c_str());
+        //m_Buffer=alutCreateBufferFromFile(FileName.c_str());
 
-        if (m_Buffer==AL_NONE) std::cout << "OpenAL: Error creating static sound buffer '" << FileName << "'" << " Error: " << alutGetErrorString(alutGetError()) << "\n";
+        //if (m_Buffer==AL_NONE) std::cout << "OpenAL: Error creating static sound buffer '" << FileName << "'" << " Error: " << alGetError() << "\n";
     }
 
     assert(alGetError()==AL_NO_ERROR);

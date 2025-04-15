@@ -5,7 +5,6 @@ This project is licensed under the terms of the MIT license.
 */
 
 #include "SoundStream.hpp"
-#include "MP3Stream.hpp"
 #include "OggVorbisStream.hpp"
 #include "../SoundSysOpenAL/CaptureStream.hpp"
 
@@ -14,7 +13,7 @@ This project is licensed under the terms of the MIT license.
 
 SoundStreamT* SoundStreamT::Create(const std::string& ResName)
 {
-    if (cf::String::EndsWith(ResName, ".mp3")) return new MP3StreamT(ResName);
+    //if (cf::String::EndsWith(ResName, ".mp3")) return new MP3StreamT(ResName);
     if (cf::String::EndsWith(ResName, ".ogg")) return new OggVorbisStreamT(ResName);
 
     return new CaptureStreamT(ResName);

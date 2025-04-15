@@ -19,8 +19,6 @@ Each of these libraries is compatible both with the GPL as well as with the cust
       FMOD, copyright (c) 1994-2004 Firelight Technologies Pty, Ltd.,
       http://www.fmod.org
 
-      freealut, http://connect.creativelabs.com/openal/default.aspx
-
       FreeType Library, copyright (c) 2009 The FreeType Project,
       http://www.freetype.org
 

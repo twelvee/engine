@@ -18,7 +18,7 @@ This project is licensed under the terms of the MIT license.
 // // Under Windows, the mpg123 functions must be properly declared for DLL import.
 // #define LINK_MPG123_DLL
 // #endif
-#include "mpg123.h"
+#include "mpg123/include/mpg123.h"
 
 
 static ArrayT<cf::FileSys::InFileI*> OpenFiles;
@@ -26,7 +26,7 @@ static ArrayT<cf::FileSys::InFileI*> OpenFiles;
 
 /// Static replace method for the POSIX read function used by MPG123 to read from mp3 files.
 /// We use our streamed file here to load data into buffer, so MPG123 works directly with cf::FileSys files.
-static ssize_t FileSysRead(int FileDesc, void* Buffer, size_t Count)
+static size_t FileSysRead(int FileDesc, void* Buffer, size_t Count)
 {
     cf::FileSys::InFileI* StreamFile=OpenFiles[FileDesc];
 

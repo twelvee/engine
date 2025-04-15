@@ -142,9 +142,9 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     m_TexGenModeInfo=new wxStaticText(this, -1, "", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE | wxST_NO_AUTORESIZE);
     item3->Add(m_TexGenModeInfo, 0, wxGROW|wxALL, 5 );
 
-    item1->Add( item3, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item1->Add( item3, 0, wxGROW, 5 );
 
-    item0->Add( item1, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item1, 0, wxGROW|wxALL, 5 );
 
     wxStaticBox *item81 = new wxStaticBox( this, -1, wxT("Material Vectors") );
     wxStaticBoxSizer *item80 = new wxStaticBoxSizer( item81, wxVERTICAL );
@@ -157,7 +157,7 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     MaterialXInfo = new wxStaticText( this, -1, wxT("( 0.000000 | 0.000000 | 0.000000 )"), wxDefaultPosition, wxDefaultSize, 0 );
     item85->Add( MaterialXInfo, 3, wxALIGN_CENTER|wxTOP|wxBOTTOM, 5 );
 
-    item80->Add( item85, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item80->Add( item85, 0, wxGROW, 5 );
 
     wxBoxSizer *item88 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -167,9 +167,9 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     MaterialYInfo = new wxStaticText( this, -1, wxT("( 0.000000 | 0.000000 | 0.000000 )"), wxDefaultPosition, wxDefaultSize, 0 );
     item88->Add( MaterialYInfo, 3, wxALIGN_CENTER|wxTOP|wxBOTTOM, 5 );
 
-    item80->Add( item88, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item80->Add( item88, 0, wxGROW, 5 );
 
-    item0->Add( item80, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item80, 0, wxGROW|wxALL, 5 );
 
     // Hide vector info if hidden features are not activated.
     if (wxConfigBase::Get()->Read("General/Activate Hidden", 0L)!=0x1978)
@@ -179,12 +179,12 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     wxStaticBoxSizer *item29 = new wxStaticBoxSizer( item30, wxVERTICAL );
 
     ChoiceCurrentMat= new wxChoice(this, ID_CHOICE_CURRENT_MAT, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
-    item29->Add(ChoiceCurrentMat, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
+    item29->Add(ChoiceCurrentMat, 0, wxGROW|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
     wxBoxSizer *item37 = new wxBoxSizer( wxHORIZONTAL );
 
     m_BitmapCurrentMat=new wxStaticBitmap(this, -1, wxBitmap(), wxDefaultPosition, wxSize(PREVIEW_BITMAP_SIZE, PREVIEW_BITMAP_SIZE), wxSUNKEN_BORDER);
-    item37->Add(m_BitmapCurrentMat, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5 );
+    item37->Add(m_BitmapCurrentMat, 0, wxALL, 5 );
 
     wxBoxSizer *item39 = new wxBoxSizer( wxVERTICAL );
 
@@ -193,18 +193,18 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
 
     wxButton *item35 = new wxButton( this, ID_BUTTON_BROWSE_MATS, wxT("Browse"), wxDefaultPosition, wxDefaultSize, 0 );
     item35->SetDefault();
-    item39->Add( item35, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item39->Add( item35, 0, wxALL, 5 );
 
-    item39->Add( 15, 15, 1, wxALIGN_CENTER_VERTICAL, 5 );
+    item39->Add( 15, 15, 1, wxALIGN_CENTER_HORIZONTAL, 5 );
 
     wxButton *item53 = new wxButton(this, ID_BUTTON_REPLACE_MATS, wxT("Globally Replace"), wxDefaultPosition, wxDefaultSize, 0 );
-    item39->Add( item53, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 5 );
+    item39->Add( item53, 0, wxLEFT|wxRIGHT|wxBOTTOM, 5 );
 
-    item37->Add( item39, 1, wxGROW|wxALIGN_CENTER_HORIZONTAL, 5 );
+    item37->Add( item39, 1, wxGROW, 5 );
 
-    item29->Add( item37, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item29->Add( item37, 0, wxGROW, 5 );
 
-    item0->Add( item29, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item29, 0, wxGROW|wxALL, 5 );
 
     wxStaticBox *item17 = new wxStaticBox(this, -1, wxT("Alignment") );
     wxStaticBoxSizer *item16 = new wxStaticBoxSizer( item17, wxHORIZONTAL );
@@ -273,23 +273,23 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     item25->Add( 15, 15, 0, wxALIGN_CENTER, 5 );
 
     m_CheckBoxTreatMultipleAsOne = new wxCheckBox(this, ID_CHECKBOX_TREAT_MULTIPLE_AS_ONE, wxT("Treat multiple as one"), wxDefaultPosition, wxDefaultSize, 0 );
-    item25->Add(m_CheckBoxTreatMultipleAsOne, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
+    item25->Add(m_CheckBoxTreatMultipleAsOne, 0, wxRIGHT | wxBOTTOM, 5);
 
-    item16->Add( item25, 0, wxGROW|wxALIGN_CENTER_HORIZONTAL, 5 );
+    item16->Add( item25, 0, wxGROW, 5 );
 
-    item0->Add( item16, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item16, 0, wxGROW|wxALL, 5 );
 
     wxStaticBox *item55 = new wxStaticBox(this, -1, wxT("Tool Mode") );
     wxStaticBoxSizer *item54 = new wxStaticBoxSizer( item55, wxVERTICAL );
 
     CheckBoxHideSelMask= new wxCheckBox(this, ID_CHECKBOX_HIDE_SEL_MASK, wxT("Hide Selection Overlay"), wxDefaultPosition, wxDefaultSize, 0 );
-    item54->Add(CheckBoxHideSelMask, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item54->Add(CheckBoxHideSelMask, 0, wxALL, 5 );
 
     wxFlexGridSizer *item57 = new wxFlexGridSizer( 2, 0, 0 );
     item57->AddGrowableCol( 1 );
 
     wxStaticText *item60 = new wxStaticText(this, -1, wxT("Right MB mode:"), wxDefaultPosition, wxDefaultSize, 0 );
-    item57->Add( item60, 0, wxALIGN_CENTER_VERTICAL|wxLEFT|wxBOTTOM|wxTOP, 5 );
+    item57->Add( item60, 0, wxLEFT|wxBOTTOM|wxTOP, 5 );
 
     ChoiceRightMBMode= new wxChoice(this, ID_CHOICE_RIGHT_MB_MODE, wxDefaultPosition, wxDefaultSize, 0, NULL, 0 );
     ChoiceRightMBMode->Append("Apply Normal"       , (void*)ApplyNormal     );
@@ -297,11 +297,11 @@ EditSurfacePropsDialogT::EditSurfacePropsDialogT(wxWindow* Parent, MapDocumentT*
     ChoiceRightMBMode->Append("Apply Edge Aligned" , (void*)ApplyEdgeAligned);
     ChoiceRightMBMode->Append("Apply Projective"   , (void*)ApplyProjective );
     ChoiceRightMBMode->SetSelection(0);
-    item57->Add(ChoiceRightMBMode, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item57->Add(ChoiceRightMBMode, 0, wxGROW|wxALL, 5 );
 
-    item54->Add( item57, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item54->Add( item57, 0, wxGROW, 5 );
 
-    item0->Add( item54, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+    item0->Add( item54, 0, wxGROW|wxALL, 5 );
 
     this->SetSizer(item0);
     item0->SetSizeHints(this);

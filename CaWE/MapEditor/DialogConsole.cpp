@@ -29,7 +29,7 @@ ConsoleDialogT::ConsoleDialogT(wxWindow* Parent)
     ConsoleOutput->SetMinSize(wxSize(40, 30));
     ConsoleOutput->SetForegroundColour( *wxGREEN );
     ConsoleOutput->SetBackgroundColour( *wxBLACK );
-    item0->Add(ConsoleOutput, 1, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add(ConsoleOutput, 1, wxGROW, 5 );
 
     wxBoxSizer *item2 = new wxBoxSizer( wxHORIZONTAL );
 
@@ -37,9 +37,9 @@ ConsoleDialogT::ConsoleDialogT(wxWindow* Parent)
     item2->Add(CommandInput, 1, wxALIGN_CENTER|wxRIGHT, 5 );
 
     wxButton *item4 = new wxButton(this, ID_BUTTON_CLEAR, wxT("Clear"), wxDefaultPosition, wxSize(48,18), 0 );
-    item2->Add( item4, 0, wxGROW|wxALIGN_CENTER_HORIZONTAL, 5 );
+    item2->Add( item4, 0, wxGROW, 5 );
 
-    item0->Add( item2, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add( item2, 0, wxGROW, 5 );
 
     this->SetSizer( item0 );
     item0->SetSizeHints(this);

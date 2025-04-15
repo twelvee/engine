@@ -71,7 +71,7 @@ ReplaceMaterialsDialogT::ReplaceMaterialsDialogT(bool IsSomethingSelected, MapDo
     wxButton *item5 = new wxButton(this, ID_BUTTON_BROWSE_FIND, wxT("Browse"));
     item3->Add( item5, 0, wxALIGN_CENTER|wxALL, 5 );
 
-    item1->Add( item3, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item1->Add( item3, 0, wxGROW, 5 );
 
     wxBoxSizer *item6 = new wxBoxSizer( wxHORIZONTAL );
 

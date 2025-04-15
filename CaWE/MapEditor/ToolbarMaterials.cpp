@@ -64,7 +64,7 @@ MaterialsToolbarT::MaterialsToolbarT(wxWindow* Parent, MapDocumentT* MapDoc)
     item0->Add(ChoiceSizer, 0, wxGROW | wxLEFT | wxRIGHT | wxTOP, 5);
 
     StaticTextCurrentMatSize=new wxStaticText(this, -1, wxT("Size: a x b"), wxDefaultPosition, wxDefaultSize, wxST_NO_AUTORESIZE );
-    item0->Add(StaticTextCurrentMatSize, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxTOP|wxLEFT|wxRIGHT, 5 );
+    item0->Add(StaticTextCurrentMatSize, 0, wxGROW|wxTOP|wxLEFT|wxRIGHT, 5 );
 
     m_BitmapCurrentMat=new wxStaticBitmap(this, -1, wxBitmap(), wxDefaultPosition, wxSize(PREVIEW_BITMAP_SIZE, PREVIEW_BITMAP_SIZE), wxSUNKEN_BORDER);
     item0->Add(m_BitmapCurrentMat, 0, wxALIGN_CENTER|wxBOTTOM|wxLEFT|wxRIGHT, 5 );
@@ -78,7 +78,7 @@ MaterialsToolbarT::MaterialsToolbarT(wxWindow* Parent, MapDocumentT* MapDoc)
     item9->Disable();
     item7->Add( item9, 1, wxALIGN_CENTER|wxRIGHT|wxBOTTOM, 5 );
 
-    item0->Add( item7, 0, wxGROW|wxALIGN_CENTER_VERTICAL, 5 );
+    item0->Add( item7, 0, wxGROW, 5 );
 
     this->SetSizer( item0 );
     item0->SetSizeHints(this);

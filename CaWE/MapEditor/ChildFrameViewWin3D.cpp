@@ -84,7 +84,7 @@ void ViewWindow3DT::NotifySubjectChanged(ToolsSubjectT* Subject, ToolT* Tool, To
     switch (Priority)
     {
         case UPDATE_NOW:
-            Refresh(false /*eraseBackground*/);
+            Refresh(false);
             Update();
             break;
 

@@ -31,7 +31,7 @@ InspectorDialogT::InspectorDialogT(wxWindow* Parent, MapDocumentT* MapDoc)
     Notebook->AddPage(m_EntityInspectorDialog, "Entity");
     Notebook->AddPage(PrimitiveProps,          "Primitive");
 
-    mainSizer->Add(Notebook, 1, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 2);
+    mainSizer->Add(Notebook, 1, wxGROW|wxALL, 2);
 
     this->SetSizer(mainSizer);
     mainSizer->SetSizeHints(this);
