@@ -1,5 +1,3 @@
-# CaWE/CMakeLists.txt
-
 file(GLOB SOURCES
         *.cpp
         FontWizard/*.cpp
@@ -20,6 +18,11 @@ add_executable(CaWE
         $<TARGET_OBJECTS:CommonObjects>
 )
 
+if(MSVC)
+    set_target_properties(CaWE PROPERTIES LINK_FLAGS "/SUBSYSTEM:WINDOWS")
+elseif(MINGW)
+    target_link_options(CaWE PRIVATE "-Wl,--subsystem,windows")
+endif()
 
 target_link_libraries(CaWE
         PRIVATE
@@ -54,11 +57,22 @@ if(UNIX AND NOT APPLE)
     target_link_options(CaWE PRIVATE "-Wl,-rpath,." "-Wl,--export-dynamic")
 endif()
 
-# Пример пользовательской команды
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    #[[add_custom_command(
+    if(WIN32)
+        set_target_properties(CaWE PROPERTIES
+                RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/../"
+                ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+                LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
+        )
+    endif()
+     add_custom_command(
             TARGET CaWE POST_BUILD
-            COMMAND CaWE --update-doxygen
-            COMMENT "Updating documentation templates"
-    )]]
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_SOURCE_DIR}/CaWE/res"
+            "${CMAKE_BINARY_DIR}/../res"
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${CMAKE_SOURCE_DIR}/CaWE/wdr"
+            "${CMAKE_BINARY_DIR}/../wdr"
+            COMMENT "Copy resources"
+    )
 endif()

@@ -44,3 +44,8 @@
 .idea
 cmake-build-debug
 cmake-build-release
+CaWE.exe
+CaWE.ilk
+CaWE.pdb
+res
+wdr

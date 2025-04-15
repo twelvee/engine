@@ -67,9 +67,7 @@ SoundShaderManagerI* SoundShaderManager = &s_SSM;
 
 SoundSysI* SoundSystem = NULL;
 
-
 OptionsT Options;
-
 
 IMPLEMENT_APP(AppCaWE)
 
@@ -113,8 +111,8 @@ bool AppCaWE::OnInit()
     m_CmdLineParser.SetCmdLine(argc, argv);
     OnInitCmdLine(m_CmdLineParser);
     m_CmdLineParser.AddParam("filename", wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL | wxCMD_LINE_PARAM_MULTIPLE);
-    m_CmdLineParser.AddSwitch("d", "update-doxygen", "Update the scripting documentation templates, then quit.");
-    m_CmdLineParser.SetSwitchChars("-");
+    /*m_CmdLineParser.AddSwitch("d", "update-doxygen", "Update the scripting documentation templates, then quit.");
+    m_CmdLineParser.SetSwitchChars("-");*/
 
     if (m_CmdLineParser.Parse() != 0)
     {
@@ -124,6 +122,7 @@ bool AppCaWE::OnInit()
 
     OnCmdLineParsed(m_CmdLineParser);   // Just for setting wxLog to verbose when "--verbose" is given.
 
+    /*
     if (m_CmdLineParser.Found("update-doxygen"))
     {
         WriteLuaDoxygenHeaders();
@@ -131,8 +130,9 @@ bool AppCaWE::OnInit()
         OnExit();
         return false;
     }
+    */
 
-    const std::string AppDir="./CaWE";
+    const std::string AppDir="./";
 
     // This is for registering the CaWE.cmat file farther below.
     cf::FileSys::FileMan->MountFileSystem(cf::FileSys::FS_TYPE_LOCAL_PATH, AppDir+"/res/", AppDir+"/res/");

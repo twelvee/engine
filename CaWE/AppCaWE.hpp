@@ -21,11 +21,11 @@ class AppCaWE : public wxApp
 
     AppCaWE();
 
-    bool OnInit();
-    int  OnExit();
+    bool OnInit() override;
+    int  OnExit() override;
 
     // CaWE-specific additional methods.
-    ParentFrameT* GetParentFrame() { return m_ParentFrame; }
+    ParentFrameT* GetParentFrame() const { return m_ParentFrame; }
 
 
     private:
