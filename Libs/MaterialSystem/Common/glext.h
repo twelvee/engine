@@ -5685,9 +5685,9 @@ typedef void (APIENTRYP PFNGLPOINTPARAMETERIVNVPROC) (GLenum pname, const GLint 
 #ifndef GL_EXT_stencil_two_side
 #define GL_EXT_stencil_two_side 1
 #ifdef GL_GLEXT_PROTOTYPES
-GLAPI void APIENTRY glActiveStencilFaceEXT (GLenum);
+
 #endif /* GL_GLEXT_PROTOTYPES */
-typedef void (APIENTRYP PFNGLACTIVESTENCILFACEEXTPROC) (GLenum face);
+
 #endif
 
 #ifndef GL_ATI_text_fragment_shader

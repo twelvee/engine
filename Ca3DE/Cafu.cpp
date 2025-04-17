@@ -362,7 +362,11 @@ int main(int argc, char* argv[])
                               Options_ClientWindowSizeX.GetValueInt(),
                               Options_ClientWindowSizeY.GetValueInt(),
                               "Cafu Engine",
-                              Options_ClientFullScreen.GetValueBool() ? glfwGetPrimaryMonitor() : NULL);
+                              NULL);
+        if (!glfwInit()) return -1;
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         glfwMainWindowT   MainWin(win, ClientMainWindowT::getGlfwKey);
 
         win.makeContextCurrent();

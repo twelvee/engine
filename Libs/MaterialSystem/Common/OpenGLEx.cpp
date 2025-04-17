@@ -63,7 +63,6 @@ PFNGLMULTITEXCOORD3FARBPROC     cf::glMultiTexCoord3fARB    =NULL;
 PFNGLMULTITEXCOORD3FVARBPROC    cf::glMultiTexCoord3fvARB   =NULL;
 PFNGLMULTITEXCOORD4FARBPROC     cf::glMultiTexCoord4fARB    =NULL;
 PFNGLMULTITEXCOORD4FVARBPROC    cf::glMultiTexCoord4fvARB   =NULL;
-PFNGLACTIVETEXTUREARBPROC       cf::glActiveTextureARB      =NULL;
 PFNGLCLIENTACTIVETEXTUREARBPROC cf::glClientActiveTextureARB=NULL;
 
 
@@ -86,7 +85,6 @@ void cf::Init_GL_ARB_multitexture()
     cf::glMultiTexCoord3fvARB   =(PFNGLMULTITEXCOORD3FVARBPROC   )GetProcAddress((StringPtr)"glMultiTexCoord3fvARB");
     cf::glMultiTexCoord4fARB    =(PFNGLMULTITEXCOORD4FARBPROC    )GetProcAddress((StringPtr)"glMultiTexCoord4fARB");
     cf::glMultiTexCoord4fvARB   =(PFNGLMULTITEXCOORD4FVARBPROC   )GetProcAddress((StringPtr)"glMultiTexCoord4fvARB");
-    cf::glActiveTextureARB      =(PFNGLACTIVETEXTUREARBPROC      )GetProcAddress((StringPtr)"glActiveTextureARB");
     cf::glClientActiveTextureARB=(PFNGLCLIENTACTIVETEXTUREARBPROC)GetProcAddress((StringPtr)"glClientActiveTextureARB");
 
 
@@ -97,7 +95,6 @@ void cf::Init_GL_ARB_multitexture()
         cf::glMultiTexCoord3fvARB   ==NULL ||
         cf::glMultiTexCoord4fARB    ==NULL ||
         cf::glMultiTexCoord4fvARB   ==NULL ||
-        cf::glActiveTextureARB      ==NULL ||
         cf::glClientActiveTextureARB==NULL)
     {
         cf::glMultiTexCoord2dARB    =NULL;
@@ -107,7 +104,6 @@ void cf::Init_GL_ARB_multitexture()
         cf::glMultiTexCoord3fvARB   =NULL;
         cf::glMultiTexCoord4fARB    =NULL;
         cf::glMultiTexCoord4fvARB   =NULL;
-        cf::glActiveTextureARB      =NULL;
         cf::glClientActiveTextureARB=NULL;
         return;
     }
@@ -301,8 +297,6 @@ void cf::Init_GL_EXT_stencil_wrap()
 }
 
 
-PFNGLACTIVESTENCILFACEEXTPROC cf::glActiveStencilFaceEXT=NULL;
-
 
 void cf::Init_GL_EXT_stencil_two_side()
 {
@@ -310,7 +304,6 @@ void cf::Init_GL_EXT_stencil_two_side()
 
     if (!IsExtensionAvailable("GL_EXT_stencil_two_side")) return;
 
-    cf::glActiveStencilFaceEXT=(PFNGLACTIVESTENCILFACEEXTPROC)GetProcAddress((StringPtr)"glActiveStencilFaceEXT"); if (glActiveStencilFaceEXT==NULL) return;
 
     cf::GL_EXT_stencil_two_side_AVAIL=true;
 }

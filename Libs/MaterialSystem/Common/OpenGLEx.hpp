@@ -59,7 +59,6 @@ namespace cf
     extern PFNGLMULTITEXCOORD3FVARBPROC          glMultiTexCoord3fvARB;
     extern PFNGLMULTITEXCOORD4FARBPROC           glMultiTexCoord4fARB;
     extern PFNGLMULTITEXCOORD4FVARBPROC          glMultiTexCoord4fvARB;
-    extern PFNGLACTIVETEXTUREARBPROC             glActiveTextureARB;
     extern PFNGLCLIENTACTIVETEXTUREARBPROC       glClientActiveTextureARB;
 
     extern PFNGLCOMPRESSEDTEXIMAGE3DARBPROC      glCompressedTexImage3DARB; // Extension "GL_ARB_texture_compression".
@@ -128,7 +127,6 @@ namespace cf
     extern PFNGLGETLOCALCONSTANTINTEGERVEXTPROC  glGetLocalConstantIntegervEXT;
     extern PFNGLGETLOCALCONSTANTFLOATVEXTPROC    glGetLocalConstantFloatvEXT;
 
-    extern PFNGLACTIVESTENCILFACEEXTPROC         glActiveStencilFaceEXT;    // Extension "GL_EXT_stencil_two_side".
 
     extern PFNGLVERTEXATTRIB1DARBPROC             glVertexAttrib1dARB;      // Extensions "GL_ARB_vertex_program" and "GL_ARB_fragment_program".
     extern PFNGLVERTEXATTRIB1DVARBPROC            glVertexAttrib1dvARB;

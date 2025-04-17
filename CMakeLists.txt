@@ -77,6 +77,12 @@ set(BUILD_EXTRAS         OFF CACHE BOOL "Don't build Bullet extras" FORCE)
 set(BUILD_UNIT_TESTS     OFF CACHE BOOL "Don't build Bullet unit tests" FORCE)
 set(BUILD_BULLET2_DEMOS  OFF CACHE BOOL "Don't build Bullet2 demos" FORCE)
 
+FetchContent_Declare(
+        glew
+        GIT_REPOSITORY https://github.com/Perlmint/glew-cmake.git
+        GIT_TAG glew-cmake-2.2.0
+)
+
 FetchContent_MakeAvailable(wxWidgets)
 FetchContent_MakeAvailable(freetype)
 FetchContent_MakeAvailable(glfw)
@@ -85,6 +91,12 @@ FetchContent_MakeAvailable(ogg)
 FetchContent_MakeAvailable(vorbis)
 FetchContent_MakeAvailable(openal-soft)
 FetchContent_MakeAvailable(bullet)
+FetchContent_GetProperties(glew)
+if(NOT glew_POPULATED)
+    FetchContent_Populate(glew)
+
+    add_subdirectory(${glew_SOURCE_DIR} ${glew_BINARY_DIR} EXCLUDE_FROM_ALL)
+endif()
 
 set(OGG_INCLUDE_DIR "${ogg_SOURCE_DIR}/include" CACHE PATH "Ogg include directory" FORCE)
 set(OGG_LIBRARY "$<TARGET_FILE:ogg>" CACHE FILEPATH "Ogg library file" FORCE)

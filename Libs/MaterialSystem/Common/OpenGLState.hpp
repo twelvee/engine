@@ -17,8 +17,6 @@ This project is licensed under the terms of the MIT license.
 #include <windows.h>
 #endif
 
-#include <GL/gl.h>
-
 
 class DepRelMatrixT;
 

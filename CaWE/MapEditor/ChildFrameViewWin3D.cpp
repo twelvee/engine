@@ -4,6 +4,7 @@ Copyright (c) Carsten Fuchs and other contributors.
 This project is licensed under the terms of the MIT license.
 */
 
+#include "gl/glew.h"
 #include "ChildFrameViewWin3D.hpp"
 #include "ChildFrame.hpp"
 #include "MapDocument.hpp"
@@ -610,5 +611,6 @@ void ViewWindow3DT::OnPaint(wxPaintEvent& PE)
     // *********************
 
     MatSys::Renderer->EndFrame();
+
     SwapBuffers();
 }

@@ -3,7 +3,7 @@ Cafu Engine, http://www.cafu.de/
 Copyright (c) Carsten Fuchs and other contributors.
 This project is licensed under the terms of the MIT license.
 */
-
+#include "gl/glew.h"
 #include "ChildFrameViewWin2D.hpp"
 #include "ChildFrameViewWin3D.hpp"
 #include "Renderer2D.hpp"

@@ -10,9 +10,10 @@ This project is licensed under the terms of the MIT license.
 
 #ifndef CAFU_MATSYS_RENDERER_HPP_INCLUDED
 #define CAFU_MATSYS_RENDERER_HPP_INCLUDED
+#include <GL/glew.h>
 
 
-
+class ShaderT;
 template<class T> class ArrayT;
 class MaterialT;
 template<class T> class Matrix4x4T;
@@ -220,6 +221,11 @@ namespace MatSys
         virtual void PushName(unsigned long Name)=0;
         virtual void PopName()=0;
 
+        static void DebugOutputCallback(GLenum source, GLenum type, GLuint id,
+                                            GLenum severity, GLsizei length,
+                                            const GLchar* message, const void* userParam);
+
+        virtual ArrayT<ShaderT*>& DGetShaderRepository() = 0;
 
         /**************************************************************/
         /*** 1st interface for handing in geometry (immediate mode) ***/

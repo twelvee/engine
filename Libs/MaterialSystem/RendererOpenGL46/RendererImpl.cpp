@@ -13,8 +13,7 @@ This project is licensed under the terms of the MIT license.
 #endif
 #include <cstdio>
 #include <stdlib.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+#include <GL/glew.h>
 
 #include "RendererImpl.hpp"
 #include "../Common/OpenGLState.hpp"
@@ -38,23 +37,19 @@ RendererImplT &RendererImplT::GetInstance() {
 
 
 RendererImplT::RendererImplT()
-// : BaseDir              ("."),
     : CurrentRenderAction(AMBIENT),
       CurrentRenderMaterial(NULL),
       LockCurrentRM(false),
       CurrentShader(NULL),
       CurrentLightMap(NULL),
-      // CurrentSHLMaps       (),
       CurrentSHLLookupMap(NULL),
       InitCounter(1),
       MatrixModelView(Matrix[WORLD_TO_VIEW], Matrix[MODEL_TO_WORLD]) {
     for (unsigned long SHLMapNr = 0; SHLMapNr < 16; SHLMapNr++)
         CurrentSHLMaps[SHLMapNr] = NULL;
 
-    // All matrices are initialized with the identity matrix by their constructor.
-    // Sync'ing with the OpenGL matrices is done in Initialize().
     for (unsigned long MN = 0; MN < END_MARKER; MN++) {
-        Matrix[MN].Age = 1; // Force an update of all dependent matrices when they are next being accessed.
+        Matrix[MN].Age = 1;
         MatrixInv[MN].SetSourceMatrix(&Matrix[MN]);
     }
 
@@ -64,59 +59,52 @@ RendererImplT::RendererImplT()
 
 
 bool RendererImplT::IsSupported() const {
-    // First check if we have a valid rendering context.
-    // This ASSUMES that IF we have a valid rendering context, it has been left with the error flag cleared.
-    // glGetError();   // Clear the error flag manually (will set error GL_INVALID_OPERATION on invalid RC).
+    // Initialize GLEW if not already done
+    static bool glewInitialized = false;
+    if (!glewInitialized) {
+        glewExperimental = GL_TRUE;
+        GLenum err = glewInit();
+        if (err != GLEW_OK) {
 #ifdef DEBUG
-    Console->Print(cf::va("\n%s (%u): Entering RendererImplT::IsSupported().\n", __FILE__, __LINE__));
+            Console->Print(cf::va("%s (%u): GLEW initialization failed: %s\n", __FILE__, __LINE__,
+                                  glewGetErrorString(err)));
 #endif
-    GLenum LastError = glGetError();
-    if (LastError != GL_NO_ERROR) {
+            return false;
+        }
+        glewInitialized = true;
+    }
+
+    // Check OpenGL version
+    const char *version = (const char *) glGetString(GL_VERSION);
 #ifdef DEBUG
-        Console->Print(cf::va("%s (%u): glGetError() returned error %lu (0x%X).\n", __FILE__, __LINE__, (unsigned long)LastError, LastError));
+    Console->Print(cf::va("%s (%u): OpenGL version: %s\n", __FILE__, __LINE__, version ? version : "NULL"));
+#endif
+
+    if (!version) return false;
+
+    // Parse version string (e.g. "4.6.0 NVIDIA 456.71")
+    int major = 0, minor = 0;
+    if (sscanf(version, "%d.%d", &major, &minor) != 2)
+        return false;
+
+    if (major < 4 || (major == 4 && minor < 6)) {
+#ifdef DEBUG
+        Console->Print(cf::va("%s (%u): OpenGL 4.6 not supported\n", __FILE__, __LINE__));
 #endif
         return false;
     }
 
-    // Technically, we only require OpenGL 1.1, but the GL_ARB_multitexture must be present.
-    // (If GL_CLAMP_TO_EDGE was used within this renderer, version 1.2 or higher would be required.)
-    const char *Version = (char const *) glGetString(GL_VERSION);
-
-#ifdef DEBUG
-    Console->Print(cf::va("%s (%u): GL_VERSION string is \"%s\".\n", __FILE__, __LINE__, Version==NULL ? "NULL" : Version));
-#endif
-    if (Version == NULL) return false; // This is another way to see if the RC is valid.
-    if (atof(Version) < 1.1) return false; // Require 1.1 or higher (we don't need GL_CLAMP_TO_EDGE).
-
-
-    cf::Init_GL_ARB_multitexture();
-#ifdef DEBUG
-    Console->Print(cf::va("%s (%u): GL_ARB_multitexture_AVAIL==%u.\n", __FILE__, __LINE__, cf::GL_ARB_multitexture_AVAIL));
-#endif
-    if (!cf::GL_ARB_multitexture_AVAIL) return false; // Require the GL_ARB_multitexture extension.
-
-    // This renderer uses cube-maps when available, but also works when the cube-map extension is not there.
-    // Strictly requiring cube-maps would be easier, but then this was more of an OpenGL 1.3 rather than an
-    // OpenGL 1.2 renderer, and I really *want* to make the point that Cafu works also with APIs/hardware
-    // from the other end of the spectrum (i.e. not only on the hottest, biggest and latest, but also in
-    // ancient, weak, almost-software-only environments).
-    // Init_GL_ARB_texture_cube_map();
-    // if (!GL_ARB_texture_cube_map_AVAIL) return false;   // Require the GL_ARB_texture_cube_map extension.
-
-    // Non-availability of the GL_EXT_stencil_wrap extension will disable stencil shadows,
-    // but do no harm otherwise, so we don't strictly require it.
-    // The GL_EXT_stencil_two_side extension is optional anyway.
     return true;
 }
 
 
 bool RendererImplT::DoesSupportCompressedSHL() const {
-    return false;
+    return true; // Modern OpenGL supports compressed textures
 }
 
 
 bool RendererImplT::DoesSupportUncompressedSHL() const {
-    return false;
+    return true;
 }
 
 
@@ -126,82 +114,112 @@ int RendererImplT::GetPreferenceNr() const {
 
 
 void RendererImplT::Initialize() {
-    // Initialize OpenGL extensions.
-    cf::Init_GL_ARB_multitexture();
-    cf::Init_GL_ARB_texture_cube_map();
-    cf::Init_GL_ARB_texture_compression();
-    cf::Init_GL_EXT_stencil_wrap();
-    cf::Init_GL_EXT_stencil_two_side();
+    // Initialize GLEW
+    glewExperimental = GL_TRUE; // Needed for core profile
+    GLenum err = glewInit();
+    if (err != GLEW_OK) {
+#ifdef DEBUG
+        Console->Print(cf::va("%s (%u): GLEW initialization failed: %s\n", __FILE__, __LINE__,
+                              glewGetErrorString(err)));
+#endif
+        return;
+    }
 
-    if (cf::GL_ARB_texture_compression_AVAIL)
-        glHint(GL_TEXTURE_COMPRESSION_HINT_ARB, GL_NICEST);
+    if (GLEW_ARB_debug_output) {
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+        glDebugMessageCallback(DebugOutputCallback, nullptr);
+        glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+    }
 
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LEQUAL);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
+    glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+    glEnable(GL_PROGRAM_POINT_SIZE);
 
-    // Bring the local matrices in sync with the OpenGL matrices.
+    glGenVertexArrays(1, &m_defaultVAO);
+    glBindVertexArray(m_defaultVAO);
+
+    GLfloat quadVertices[] = {
+        -1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+        -1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+        1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+        1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+    };
+
+    glGenVertexArrays(1, &m_screenQuadVAO);
+    glGenBuffers(1, &m_screenQuadVBO);
+
+    glBindVertexArray(m_screenQuadVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, m_screenQuadVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(quadVertices), &quadVertices, GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid *) 0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid *) (3 * sizeof(GLfloat)));
+
+    glBindVertexArray(0);
+
+    // Matrices
     MatrixT ProjMat;
     glGetFloatv(GL_PROJECTION_MATRIX, &ProjMat.m[0][0]);
 
-    SetMatrix(MODEL_TO_WORLD, MatrixT()); // Start with the identity matrix.
-    SetMatrix(WORLD_TO_VIEW, MatrixT()); // Start with the identity matrix.
-    SetMatrix(PROJECTION, ProjMat.GetTranspose());
-    // The OpenGL window might have already set this, so we have to overtake it from OpenGL!
+    SetMatrix(MODEL_TO_WORLD, MatrixT());
+    SetMatrix(WORLD_TO_VIEW, MatrixT());
+    SetMatrix(PROJECTION, ProjMat);
+
+    // Uniform buffer for matrices
+    glGenBuffers(1, &m_matrixUBO);
+    glBindBuffer(GL_UNIFORM_BUFFER, m_matrixUBO);
+    glBufferData(GL_UNIFORM_BUFFER, 3 * sizeof(MatrixT), nullptr, GL_DYNAMIC_DRAW);
+    glBindBufferBase(GL_UNIFORM_BUFFER, 0, m_matrixUBO);
+    glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+    GLenum glErr = glGetError();
+    if (glErr != GL_NO_ERROR) {
+#ifdef DEBUG
+        Console->Print(cf::va("%s (%u): OpenGL error after initialization: %d\n", __FILE__, __LINE__, glErr));
+#endif
+    }
+
+    // Print renderer info
+#ifdef DEBUG
+    Console->Print("Renderer initialized successfully\n");
+    Console->Print(cf::va("OpenGL version: %s\n", glGetString(GL_VERSION)));
+    Console->Print(cf::va("GLSL version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION)));
+    Console->Print(cf::va("Vendor: %s\n", glGetString(GL_VENDOR)));
+    Console->Print(cf::va("Renderer: %s\n", glGetString(GL_RENDERER)));
+#endif
 }
 
+ArrayT<ShaderT*>& RendererImplT::DGetShaderRepository() {
+    return GetShaderRepository();
+}
 
 void RendererImplT::Release() {
-    // TODO: Check for OpenGL Errors (but at most say 20, to avoid inf loop!).
+    // Clean up OpenGL resources
+}
+
+void RendererImplT::DebugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length,
+                                        const GLchar *message, const void *userParam) {
+    if (type == GL_DEBUG_TYPE_ERROR) {
+        Console->Print(cf::va("GL ERROR: %s\n", message));
+    }
 }
 
 
 const char *RendererImplT::GetDescription() const {
-    return "OpenGL 1.2 Renderer";
+    return "OpenGL 4.6 Renderer";
 }
 
 
-// void RendererImplT::SetBaseDir(const std::string& BaseDir_)
-// {
-//     BaseDir=BaseDir_;
-// }
-
-
-// const std::string& RendererImplT::GetBaseDir()
-// {
-//     return BaseDir;
-// }
-
-
 RenderMaterialT *RendererImplT::RegisterMaterial(const MaterialT *Material) const {
-    // For each material map, get a texture
-    ;
-
-    // The RenderMaterial alone cannot set-up the OpenGL render state alone,
-    // because it does not know which pass is currently to be drawn (ambient, stencil, light),
-    // and it does not know where (i.e. which texture unit) the Cg shaders expect the textures to be bound.
-
-    // Moreover, not every RenderMaterial must come with all textures - many Material may e.g. have no luma or specular map.
-    // Some may not even have a lightmap...
-
-    // This brings us back to the concept of SHADERS.
-    // A material can know with which shader it is rendered best (may also be user defineable).
-    // (In fact, there are at least two shaders per material: One for the ambient pass, and one for the light pass,
-    //  and each shader may in turn have multiple rendering passes. This is like FX!!)
-    // A shader in turn knows what of the material it needs where (tex units...).
-
-    // For internal optimization (sorting for reduced state changes), maybe we should cache all meshes of the current pass (ambient, stencil, or light).
-    // This is the middle ground between caching everything of a scene, and caching only a single mesh.
-    // YannL does the same, and the he uses radix sort for sorting by shader ID and
-    // "shader param pointer (so that shaders with the same parameter set are grouped)".
-    // (In our case, the shader params are probably the Material (pointers) themselves...).
-
-
-    // Keeping the RenderMaterials array is probably not very useful... (could directly " return new RenderMaterialT(...); ").
-    // However, if we want the user to delete the returned pointer on clean-up time, we also have to provide a
-    // FreeMaterial(...) function, so that the delete is done in the same module (exe/dll boundary!).
-    //RenderMaterials.PushBack(new RenderMaterialT(Material));
-    //return RenderMaterials[RenderMaterials.Size()-1];
-
     if (Material == NULL) return NULL;
-
     return new RenderMaterialT(Material);
 }
 
@@ -249,30 +267,17 @@ void RendererImplT::FreeMaterial(RenderMaterialT *RenderMaterial) {
 
 
 void RendererImplT::BeginFrame(double Time) {
-    // Set the "time" symbol of the expressions at the current time.
     ExpressionSymbols.Time = float(Time);
 
-    // These affect also glClear(), see OpenGL Red Book, p. 435.
     OpenGLStateT::GetInstance()->ColorMask(true, true, true, true);
     OpenGLStateT::GetInstance()->DepthMask(true);
 
-    // If the underlying windowing system was restarted since the last frame (e.g. the user changed the screen resolution),
-    // we got a notification from the user code. Then this is the right place to reinitialize the rendering resources.
-    // (Not really... TextureMapImplTs handle that all by themselves.  It IS right however that this place might be
-    //  reasonable for (re-)precaching after an RC change).
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
-void RendererImplT::EndFrame() {
-    ;
-}
-
-
 void RendererImplT::PreCache() {
-    // An idea from NVidias GPU Programming Guide:
-    // Allocate the vertex and pixels shaders before the textures in order to minimize video memory thrashing.
-    // This also makes sure that the shaders are already compiled and loaded when they're first used.
+    // Pre-compile and cache shaders
     if (CurrentShader != NULL) CurrentShader->Deactivate();
     for (unsigned long ShaderNr = 0; ShaderNr < GetShaderRepository().Size(); ShaderNr++) {
         GetShaderRepository()[ShaderNr]->Activate();
@@ -280,59 +285,32 @@ void RendererImplT::PreCache() {
     }
     if (CurrentShader != NULL) CurrentShader->Activate();
 
-
-    OpenGLStateT::GetInstance()->Disable(GL_ALPHA_TEST);
+    // Set up OpenGL state for precaching
     OpenGLStateT::GetInstance()->Disable(GL_BLEND);
-    OpenGLStateT::GetInstance()->Disable(GL_CULL_FACE);
-
+    OpenGLStateT::GetInstance()->Disable(GL_ALPHA_TEST);
     OpenGLStateT::GetInstance()->DepthFunc(GL_LEQUAL);
     OpenGLStateT::GetInstance()->ColorMask(true, true, true, true);
-    OpenGLStateT::GetInstance()->DepthMask(false); // Want/need at lot of overdraw below...
-    OpenGLStateT::GetInstance()->Disable(GL_STENCIL_TEST);
-    if (cf::GL_EXT_stencil_two_side_AVAIL) {
-        OpenGLStateT::GetInstance()->Disable(GL_STENCIL_TEST_TWO_SIDE_EXT);
-        OpenGLStateT::GetInstance()->ActiveStencilFace(GL_FRONT);
-    }
+    OpenGLStateT::GetInstance()->DepthMask(false);
 
-    OpenGLStateT::GetInstance()->ActiveTextureUnit(GL_TEXTURE0_ARB);
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-
-    // Set the modelview matrix to identity.
-    SetMatrix(MODEL_TO_WORLD, MatrixT());
-    SetMatrix(WORLD_TO_VIEW, MatrixT());
-    OpenGLStateT::GetInstance()->LoadMatrix(OpenGLStateT::MODELVIEW, GetDepRelMatrixModelView());
-
-    // These are all the textures that we want to pre-cache.
+    // Pre-cache textures
     const ArrayT<TextureMapImplT *> &TexMapRepository = TextureMapManagerImplT::Get().GetTexMapRepository();
 
     for (unsigned long TexNr = 0; TexNr < TexMapRepository.Size(); TexNr++) {
-        // Reverse the order in which we pre-cache.
-        // Assuming that the most important textures occur in TexMapRepository first, maybe it helps to upload them last...
         unsigned long TexNr_ = TexMapRepository.Size() - TexNr - 1;
-
-        // Bind the OpenGL texture object of this texture to texture unit 0.
         GLuint TexObject = TexMapRepository[TexNr_]->GetOpenGLObject();
 
         if (dynamic_cast<TextureMap2DT *>(TexMapRepository[TexNr_])) {
-            OpenGLStateT::GetInstance()->Enable(GL_TEXTURE_2D);
             OpenGLStateT::GetInstance()->BindTexture(GL_TEXTURE_2D, TexObject);
-        } else if (dynamic_cast<TextureMapCubeT *>(TexMapRepository[TexNr_]) && cf::GL_ARB_texture_cube_map_AVAIL) {
-            OpenGLStateT::GetInstance()->Enable(GL_TEXTURE_CUBE_MAP_ARB);
-            OpenGLStateT::GetInstance()->BindTexture(GL_TEXTURE_CUBE_MAP_ARB, TexObject);
+        } else if (dynamic_cast<TextureMapCubeT *>(TexMapRepository[TexNr_])) {
+            OpenGLStateT::GetInstance()->BindTexture(GL_TEXTURE_CUBE_MAP, TexObject);
         }
 
-        // Render a simple mesh with the bound texture.
-        glBegin(GL_TRIANGLE_FAN); {
-            cf::glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0.0, 0.0);
-            glVertex3f(-200.0, 200.0, -1000.0);
-            cf::glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1.0, 0.0);
-            glVertex3f(200.0, 200.0, -1000.0);
-            cf::glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 1.0, 1.0);
-            glVertex3f(200.0, -200.0, -1000.0);
-            cf::glMultiTexCoord2fARB(GL_TEXTURE0_ARB, 0.0, 1.0);
-            glVertex3f(-200.0, -200.0, -1000.0);
-        }
-        glEnd();
+#ifdef DEBUG
+        GLenum Error=glGetError();
+
+        if (Error!=GL_NO_ERROR)
+            Console->Print(cf::va("glGetError()==%i\n", Error));
+#endif
     }
 }
 
@@ -343,14 +321,20 @@ void RendererImplT::SetCurrentRenderAction(RenderActionT RA) {
     }
 
     CurrentRenderAction = RA;
-
-    // Based on the CurrentRenderAction and the CurrentRenderMaterial, set the CurrentShader.
     SetCurrentShader();
 }
 
+void RendererImplT::EndFrame() {
+}
 
-RendererImplT::RenderActionT RendererImplT::GetCurrentRenderAction() const {
-    return CurrentRenderAction;
+void RendererImplT::RenderMesh(const MeshT &Mesh) {
+    OpenGLStateT::GetInstance()->LoadMatrix(OpenGLStateT::PROJECTION, GetDepRelMatrix(PROJECTION));
+    OpenGLStateT::GetInstance()->LoadMatrix(OpenGLStateT::MODELVIEW, GetDepRelMatrixModelView());
+
+    if (CurrentRenderMaterial == NULL || CurrentShader == NULL) return;
+
+    // For OpenGL 4.6, we use vertex array objects and shaders here
+    CurrentShader->RenderMesh(Mesh);
 }
 
 
@@ -494,6 +478,9 @@ void RendererImplT::PopLightingParameters() {
     }
 }
 
+RendererImplT::RenderActionT RendererImplT::GetCurrentRenderAction() const {
+    return CurrentRenderAction;
+}
 
 void RendererImplT::ClearColor(float r, float g, float b, float a) {
     glClearColor(r, g, b, a);
@@ -725,16 +712,6 @@ void RendererImplT::SetCurrentSHLMaps(const ArrayT<TextureMapI *> &SHLMaps) {
 
 void RendererImplT::SetCurrentSHLLookupMap(TextureMapI *SHLLookupMap) {
     CurrentSHLLookupMap = (TextureMap2DT *) SHLLookupMap;
-}
-
-void RendererImplT::RenderMesh(const MeshT &Mesh) {
-    OpenGLStateT::GetInstance()->LoadMatrix(OpenGLStateT::PROJECTION, GetDepRelMatrix(PROJECTION));
-    OpenGLStateT::GetInstance()->LoadMatrix(OpenGLStateT::MODELVIEW, GetDepRelMatrixModelView());
-
-    if (CurrentRenderMaterial == NULL) return;
-    if (CurrentShader == NULL) return;
-
-    CurrentShader->RenderMesh(Mesh);
 }
 
 

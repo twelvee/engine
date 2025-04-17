@@ -7,9 +7,10 @@ This project is licensed under the terms of the MIT license.
 /********************/
 /*** OpenGL State ***/
 /********************/
-
+#include <GL/glew.h>
 #include <stdlib.h>
 #include "OpenGLState.hpp"
+
 #include "OpenGLEx.hpp"
 #include "DepRelMatrix.hpp"
 
@@ -40,7 +41,7 @@ void OpenGLStateT::Reset()
 {
     ActiveTexUnit_Unit =GL_TEXTURE0_ARB;
     ActiveTexUnit_Index=0;
-    cf::glActiveTextureARB(ActiveTexUnit_Unit);
+    __glewActiveTextureARB(ActiveTexUnit_Unit);
 
     AlphaFunc_Func=GL_ALWAYS;
     AlphaFunc_Ref =0;
@@ -53,7 +54,7 @@ void OpenGLStateT::Reset()
     DepthFunc_Func=GL_LEQUAL;
     glDepthFunc(DepthFunc_Func);
 
-    if (cf::GL_EXT_stencil_two_side_AVAIL) cf::glActiveStencilFaceEXT(GL_FRONT);
+    if (cf::GL_EXT_stencil_two_side_AVAIL) glActiveStencilFaceEXT(GL_FRONT);
     StencilFunc_Func[0]=GL_ALWAYS;
     StencilFunc_ref [0]=0;
     StencilFunc_mask[0]=~0;
@@ -63,7 +64,7 @@ void OpenGLStateT::Reset()
     StencilOp_zpass[0]=GL_KEEP;
     glStencilOp(StencilOp_fail[0], StencilOp_zfail[0], StencilOp_zpass[0]);
 
-    if (cf::GL_EXT_stencil_two_side_AVAIL) cf::glActiveStencilFaceEXT(GL_BACK);
+    if (cf::GL_EXT_stencil_two_side_AVAIL) glActiveStencilFaceEXT(GL_BACK);
     StencilFunc_Func[1]=GL_ALWAYS;
     StencilFunc_ref [1]=0;
     StencilFunc_mask[1]=~0;
@@ -74,7 +75,7 @@ void OpenGLStateT::Reset()
     glStencilOp(StencilOp_fail[1], StencilOp_zfail[1], StencilOp_zpass[1]);
 
     ActiveStencilFace_Mode=GL_FRONT;
-    if (cf::GL_EXT_stencil_two_side_AVAIL) cf::glActiveStencilFaceEXT(ActiveStencilFace_Mode);
+    if (cf::GL_EXT_stencil_two_side_AVAIL) glActiveStencilFaceEXT(ActiveStencilFace_Mode);
 
     ColorMask_FlagRed  =GL_TRUE;
     ColorMask_FlagGreen=GL_TRUE;
@@ -177,7 +178,7 @@ void OpenGLStateT::ActiveTextureUnit(GLenum texUnit)
     ActiveTexUnit_Unit =texUnit;
     ActiveTexUnit_Index=ActiveTexUnit_Unit-GL_TEXTURE0_ARB;
 
-    cf::glActiveTextureARB(ActiveTexUnit_Unit);
+    __glewActiveTextureARB(ActiveTexUnit_Unit);
 }
 
 
@@ -220,7 +221,7 @@ void OpenGLStateT::ActiveStencilFace(GLenum mode)
     ActiveStencilFace_Mode=mode;
 
     if (!cf::GL_EXT_stencil_two_side_AVAIL) return;
-    cf::glActiveStencilFaceEXT(ActiveStencilFace_Mode);
+    glActiveStencilFaceEXT(ActiveStencilFace_Mode);
 }
 
 

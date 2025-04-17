@@ -25,6 +25,8 @@ This project is licensed under the terms of the MIT license.
 
 #include <chrono>
 #include <thread>
+#include <MaterialSystem/RendererOpenGL46/RenderMaterial.hpp>
+#include <MaterialSystem/RendererOpenGL46/Shader.hpp>
 
 //#ifndef _WIN32
 //#include <dlfcn.h>
@@ -118,8 +120,13 @@ void ClientMainWindowT::runFrame()
         MatSys::Renderer->BeginFrame(m_TotalTime);
 
         cf::GuiSys::GuiMan->RenderAll();
+        //MatSys::Renderer->GetCurrentMaterial()->Material->AmbientShaderName = "SolidShader";
+        auto t2 =MatSys::Renderer->GetCurrentRenderAction();
+        auto rendererDescr = MatSys::Renderer;
+        auto shaderRepository = MatSys::Renderer->DGetShaderRepository();
 
         MatSys::Renderer->EndFrame();
+
         swapBuffers();
     }
     else
