@@ -10,6 +10,7 @@ Not ready to anything.
 - [x] Change build system to CMake
 - [ ] Rewrite the whole materials system and rendering
 - [x] OpenAL support
+- [ ] CEF UI (replace GUI system / add support)
 - [ ] MP3 and WAV support
 - [ ] Fix screen resolution bug
 
