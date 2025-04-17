@@ -78,6 +78,12 @@ set(BUILD_UNIT_TESTS     OFF CACHE BOOL "Don't build Bullet unit tests" FORCE)
 set(BUILD_BULLET2_DEMOS  OFF CACHE BOOL "Don't build Bullet2 demos" FORCE)
 
 FetchContent_Declare(
+        nlohmann_json
+        GIT_REPOSITORY https://github.com/nlohmann/json.git
+        GIT_TAG v3.12.0
+)
+
+FetchContent_Declare(
         glew
         GIT_REPOSITORY https://github.com/Perlmint/glew-cmake.git
         GIT_TAG glew-cmake-2.2.0
@@ -91,6 +97,7 @@ FetchContent_MakeAvailable(ogg)
 FetchContent_MakeAvailable(vorbis)
 FetchContent_MakeAvailable(openal-soft)
 FetchContent_MakeAvailable(bullet)
+FetchContent_MakeAvailable(nlohmann_json)
 FetchContent_GetProperties(glew)
 if(NOT glew_POPULATED)
     FetchContent_Populate(glew)
@@ -134,6 +141,7 @@ include_directories(
         ${ogg_SOURCE_DIR}/include
         ${openal-soft_SOURCE_DIR}/include
         ${glfw_SOURCE_DIR}/include
+        ${nlohmann_json_SOURCE_DIR}/include
 )
 
 # Common libraries
@@ -146,7 +154,7 @@ set(COMMON_LIBS
         Terrain
         Bitmap
         SceneGraph
-        MatSys
+        MatSysV2
         SoundSys
         GuiSys
         GameSys

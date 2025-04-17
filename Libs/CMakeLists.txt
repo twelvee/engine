@@ -4,7 +4,7 @@ project("Cafu Libraries")
 
 add_subdirectory(SceneGraph)
 add_subdirectory(FileSys)
-add_subdirectory(MaterialSystem)
+add_subdirectory(MaterialSystemV2)
 add_subdirectory(SoundSystem)
 add_subdirectory(ClipSys)
 add_subdirectory(Math3D)
