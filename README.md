@@ -8,7 +8,7 @@ Not ready to anything.
 
 ### Roadmap
 - [x] Change build system to CMake
-- [ ] OpenGL 4.6 support
+- [ ] Rewrite the whole materials system and rendering
 - [x] OpenAL support
 - [ ] MP3 and WAV support
 - [ ] Fix screen resolution bug
