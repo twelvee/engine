@@ -6,12 +6,6 @@ Fork from Cafu engine (cafu.de).
 
 Not ready to anything.
 
-### Roadmap
-- [x] Change build system to CMake
-- [ ] Rewrite the whole materials system and rendering
-- [x] OpenAL support
-- [ ] CEF UI (replace GUI system / add support)
-- [ ] MP3 and WAV support
-- [ ] Fix screen resolution bug
+CMake build is almost complete, but depends on what you're trying to build. Some components might fail but it's really easy to fix, just add dependencies and try to build it again.
 
-tbd..
+I have to plans to continue on this engine so use as u want, whoever read this.
